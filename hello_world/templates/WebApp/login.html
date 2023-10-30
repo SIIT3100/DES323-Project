@@ -1,0 +1,61 @@
+{% extends 'WebApp/layout/layout_Login_SignUp.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<style>
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .form-container {
+        width: 70%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: left;
+        background-color: #f2f2f2; /* Grey background color */
+    }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+    .submit-btn {
+        margin-top: 12px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .centered-heading {
+        text-align: center;
+    }
+</style>
+
+<div class="center-content">
+    <div class="form-container">
+        <form action="/register" method="post">
+            <h1 class="centered-heading">Login</h1>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" id="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" id="password">
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox"> Show Password
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </form>
+    </div>
+</div>
+{% endblock %}
