@@ -30,6 +30,7 @@ urlpatterns = [
     path("application/home", core_views.home),
     path("application/files", core_views.view_file, name='view_file'),
     path('application/files/n', core_views.edit_file, name='edit_file'),
+    path('application/test', core_views.testContent),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

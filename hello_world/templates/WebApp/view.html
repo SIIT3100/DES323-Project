@@ -30,10 +30,11 @@ View File
 
 <h2 style="text-align: center;">File Details</h2>
 
+<div class="mb-5">
 <table border="1">
     <thead>
         <tr>
-            <th>Edit</th>
+            <th>Edit/Delete</th>
             <th>Title</th>
             <th>Size</th>
             <th>Date</th>
@@ -41,23 +42,33 @@ View File
     </thead>
     <tbody>
         <tr>
-            <td><button class="edit-button" onclick="handleEdit()">Edit</button></td>
+            <td>
+                <button type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin:5px" onclick="handleEdit()" >Edit</button>
+                <button button type="button" class="btn btn-danger btn-rounded" onclick="deleteFile()" style="margin:5px;">Delete</button>
+            </td>
             <td>Comment from XXX restaurant</td>
             <td>50 Kb</td>
             <td>2023-10-22</td>
         </tr>
         <tr>
-            <td><button class="edit-button" onclick="handleEdit()">Edit</button></td>
+            <td>
+                <button type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin:5px" onclick="handleEdit()" >Edit</button>
+                <button button type="button" class="btn btn-danger btn-rounded" onclick="deleteFile()" style="margin:5px;">Delete</button>
+            </td>
             <td>Comment from XYZ restaurant</td>
             <td>28 Kb</td>
-            <td>2023-10-21</td> 
+            <td>2023-10-21</td>
         </tr>
     </tbody>
 </table>
+</div>
 
 <script>
     function handleEdit() {
         console.log("Edit button pressed");
+    }
+    function deleteFile(button) {
+        console.log("File deleted");
     }
 </script>
 

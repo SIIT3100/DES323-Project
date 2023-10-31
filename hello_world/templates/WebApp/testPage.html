@@ -1,0 +1,145 @@
+{% extends 'WebApp/layout/layout_main.html' %}
+{% load static %}
+
+{% block title %}
+View File
+{% endblock %}
+
+{% block content %}
+<style>
+    
+    table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+            margin-left: auto; 
+            margin-right: auto;
+            }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+            }
+        p {
+                display: inline-block;
+                margin: 0;
+            }
+            
+        .container {
+            display: flex;
+        }
+        #pie-chart, table {
+            flex: 1;
+        }
+
+        .pie-chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+</style>
+
+<div class="mb-5">
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<body>
+    <h1 class="pie-chart-container mb-4" style="margin-top: 10px; text-align: center;">Comment from XYZ restaurant</h1>
+    <div id="pie-chart" class="pie-chart-container"></div>
+    <script>
+        data = [
+            { label: "Category A", value: 30 },
+            { label: "Category B", value: 50 },
+            { label: "Category C", value: 20 },
+        ];
+
+        function renderPieChart(data, colors) {
+            width = 400;
+            height = 400;
+            radius = Math.min(width, height) / 2;
+
+            const svg = d3.select("#pie-chart")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", `translate(${width / 2},${height / 2})`);
+
+            const color = d3.scaleOrdinal().range(colors);
+
+            const pie = d3.pie()
+                .sort(null)
+                .value(d => d.value);
+
+            const path = d3.arc()
+                .outerRadius(radius - 10)
+                .innerRadius(0);
+
+            const dataReady = pie(data);
+
+            const arc = svg.selectAll("path")
+                .data(dataReady)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr("fill", (d, i) => color(i));
+        }
+        const customColors = ["#eb4034", "#34eb7a", "#ebb134"];
+        renderPieChart(data, customColors);
+    </script>
+</div>
+
+<div>
+    <h4 class="pie-chart-container">Statistics Table</h4>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Color</th>
+                <th>Type</th>
+                <th>Percent</th>
+                <th>Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="background-color:#34eb7a ;"></td>
+                <td>Positive</td>
+                <td>50%</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td style="background-color:#eb4034 ;"></td>
+                <td>Negative</td>
+                <td>30%</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td style="background-color:#ebb134 ;"></td>
+                <td>Neutral</td>
+                <td>20%</td>
+                <td>20</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="mb-5 mt-3" style="display:flex;justify-content: center;align-items: center;">
+    <button  onclick="view()" type="button" class="btn btn-dark btn-rounded" style= "margin-top:5px">View This File</button>
+    <button  onclick="select()" type="button" class="btn btn-dark btn-rounded" style="margin-left:15px; margin-top:5px">Select Other File</button>    
+</div>
+<script>
+    function view(button) {
+        console.log("View button pressed");
+    }
+    function select(button) {
+        console.log("Select button pressed");
+    }
+</script>
+
+
+</body>
+{% endblock %}

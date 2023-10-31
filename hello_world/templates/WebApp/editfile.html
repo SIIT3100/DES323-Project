@@ -89,17 +89,23 @@ Edit File
 
         <h1></h1>
 
-        <button onclick="addRow()" type="button" class="btn btn-warning btn-rounded">Add Row</button>
+        <div>
+            <button onclick="addRow()" type="button" class="btn btn-warning btn-rounded">Add Row</button>
+        </div>
 
-        <p style="font-weight: bold;">Title:</p>
-        <p contenteditable="true">Comment from XXX restaurant</p>
-        <p style="font-weight: bold;">Size:</p>
-        <p>50 Kb</p>
-        <p style="font-weight: bold;">Date:</p>
-        <p>2023-10-22</p>
+        <div>
+            <p style="font-weight: bold; margin-top:5px; margin-bottom:5px;">Title:</p>
+            <p contenteditable="true">Comment from XXX restaurant</p>
+            <p style="font-weight: bold;">Size:</p>
+            <p>50 Kb</p>
+            <p style="font-weight: bold;">Date:</p>
+            <p>2023-10-22</p>
+        </div>
 
-        <button  onclick="update()" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060;float: right;">Update</button>
-        <button  onclick="cancle()" type="button" class="btn btn-light btn-rounded" style= "float: right;">Cancle</button>
+        <div class="mb-5">
+            <button  onclick="update()" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button>
+            <button  onclick="cancle()" type="button" class="btn btn-light btn-rounded" style="margin-left:15px; margin-top:5px">Cancel</button>    
+        </div>
 
         <script>
             function addRow() {
@@ -131,6 +137,9 @@ Edit File
 
             function cancle(button) {
                 console.log("Cancle button pressed");
+            }
+            function deleteFile(button) {
+                console.log("File deleted");
             }
         </script>
     </div>

@@ -70,45 +70,80 @@ Test Override
     </div>
     <div class="statistic-container">
         <h1 class="center-heading">Preview</h1>
-        <button onclick="show_result()">Show Result</button>
-        <div id="result"></div>
-
+        <button onclick="fetch_sentiment()">Fetch sentiment</button>
+        <div id="chat_sentiment"></div>
         <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-
         <script>
-            function show_result() {
-                axios.get('https://www.kaggle.com/datasets/nursyahrina/chat-sentiment-dataset')
-                .then (function (response)
+            function fetch_sentiment()
+            {
+                axios.get('https://www.kaggle.com/datasets/nursyahrina/chat-sentiment-dataset/data')
+                .then(function (response)
                 {
-                    let message_data = response.data['sentiment'];
-                    let message_div = document.getElementById('result');
-                    message_div.innerHTML = JSON.stringify(message_data);
-
+                    let sentiment_data = response.data['sentiment'];
+                    let sentiment_div = document.getElementById('sentiment');
+                    sentiment_div.innerHTML = JSON.stringify(sentiment_data);
                 });
+                
             }
         </script>
-
-        <!---Visualization--->
-        <div id="chart"></div>
-
+        <div id="visual"></div>
         <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
         <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
-
         <script>
-            async function refresh_visual()
-            {
-                let message_data = await axios.get('https://www.kaggle.com/datasets/nursyahrina/chat-sentiment-dataset')
-                .then(function(response)
-                {
-                    return response.data['sentiment'];
-                }
-                );
-            };
-            
+                    async function fetchAndVisualizeSentiment() {
+            try {
+                const response = await axios.get('https://your-api-endpoint/data'); // Replace with your dataset API endpoint
 
+                const sentimentData = response.data; // Assuming the data format is suitable for a pie chart
+
+                // Create a pie chart using D3.js
+                const width = 400;
+                const height = 400;
+                const radius = Math.min(width, height) / 2;
+
+                const svg = d3.select('#sentiment-visualization')
+                    .append('svg')
+                    .attr('width', width)
+                    .attr('height', height)
+                    .append('g')
+                    .attr('transform', `translate(${width / 2},${height / 2})`);
+
+                const color = d3.scaleOrdinal()
+                    .domain(sentimentData.map(d => d.sentiment))
+                    .range(d3.schemeCategory10);
+
+                const pie = d3.pie()
+                    .value(d => d.count);
+
+                const path = d3.arc()
+                    .outerRadius(radius - 10)
+                    .innerRadius(0);
+
+                const arc = svg.selectAll('.arc')
+                    .data(pie(sentimentData))
+                    .enter()
+                    .append('g')
+                    .attr('class', 'arc');
+
+                arc.append('path')
+                    .attr('d', path)
+                    .attr('fill', d => color(d.data.sentiment));
+
+                arc.append('text')
+                    .attr('transform', d => `translate(${path.centroid(d)})`)
+                    .attr('dy', '0.35em')
+                    .text(d => d.data.sentiment);
+            } catch (error) {
+                console.error('Error fetching or visualizing sentiment data:', error);
+            }
+        }
         </script>
+
+
+
         
     </div>
+
 </div>
 
 

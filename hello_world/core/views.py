@@ -20,6 +20,10 @@ def home(request):
    context = {}
    return render(request, "WebApp/home.html", context=context)
 
+def testContent(request):
+    context = {}
+    return render(request, "WebApp/testPage.html", context=context)
+
 def uploadfile(request):
     context = {}
     return render(request, "WebApp/upload.html", context=context)
@@ -53,4 +57,4 @@ def save_edited_file(request):
     if request.method == 'POST':
         edited_file = request.FILES.get('edited_file')
 
-        return HttpResponse("File saved successfully")
+    return HttpResponse("File saved successfully")
