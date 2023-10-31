@@ -5,5 +5,111 @@ Test Override
 {% endblock %}
 
 {% block content %}
-<h1>THIS IS HOME PAGE</h1>
+<style>
+    .center-content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .download-container{
+        flex: 2.5;
+        border: 2px dashed #000000;
+        border-radius: 5px;
+        width: 50%;
+        height: 500px;
+        background-color: #f2f2f2;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .statistic-container{
+        flex: 1;
+        border: 2px dashed #000000;
+        border-radius: 5px;
+        width: 50%;
+        height: 500px;
+        background-color: #f2f2f2;
+    }
+
+    .form-group{
+        margin-bottom: 12px;
+    }
+
+    .submit-btn{
+        margin-top: 50px;
+        display: block;
+        margin: auto middle;
+    }
+
+    .center-heading{
+        text-align: center;
+    }
+
+    .statistic-preview{
+        max-width: 100%;
+        max-height: 300px;
+        border: 1px solid #ccc;
+    }
+</style>
+
+<div class="center-content">
+    <div class="download-container">
+        <form method="post", enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="file-upload">
+                <input type="file" name="file" id="fileInput" accept="*/*" />
+                <p>Drag & Drop File Or Click To Select A File</p>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+    <div class="statistic-container">
+        <h1 class="center-heading">Preview</h1>
+        <button onclick="show_result()">Show Result</button>
+        <div id="result"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+        <script>
+            function show_result() {
+                axios.get('https://www.kaggle.com/datasets/nursyahrina/chat-sentiment-dataset')
+                .then (function (response)
+                {
+                    let message_data = response.data['sentiment'];
+                    let message_div = document.getElementById('result');
+                    message_div.innerHTML = JSON.stringify(message_data);
+
+                });
+            }
+        </script>
+
+        <!---Visualization--->
+        <div id="chart"></div>
+
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+
+        <script>
+            async function refresh_visual()
+            {
+                let message_data = await axios.get('https://www.kaggle.com/datasets/nursyahrina/chat-sentiment-dataset')
+                .then(function(response)
+                {
+                    return response.data['sentiment'];
+                }
+                );
+            };
+            
+
+        </script>
+        
+    </div>
+</div>
+
+
 {% endblock %}

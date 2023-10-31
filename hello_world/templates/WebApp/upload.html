@@ -1,0 +1,17 @@
+{% extends 'WebApp/layout/layout_main.html' %}
+
+{% block title %}
+Main Page
+{% endblock %}
+
+{% block content %}
+    <h1>Upload A File</h1>
+    <form method="post", enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="file-upload">
+            <input type="file" name="file" id="fileInput" accept="*/*" />
+            <p>Drag & Drop File Or Click To Select A File</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+{% endblock %}

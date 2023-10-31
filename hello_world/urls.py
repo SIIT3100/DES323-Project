@@ -28,6 +28,8 @@ urlpatterns = [
     path("application/login", core_views.login),
     path("application/register", core_views.signup),
     path("application/home", core_views.home),
+    path("application/files", core_views.view_file, name='view_file'),
+    path('application/files/n', core_views.edit_file, name='edit_file'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

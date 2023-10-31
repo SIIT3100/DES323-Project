@@ -20,7 +20,7 @@ Sign Up
         border-radius: 5px;
         padding: 20px;
         text-align: left;
-        background-color: #f2f2f2; /* Grey background color */
+        background-color: #f2f2f2; 
     }
 
     .form-group {
@@ -31,6 +31,13 @@ Sign Up
         margin-top: 12px;
         display: block;
         margin: 0 auto;
+        width: 200px; 
+        background-color: #1EA200; 
+        color: white; 
+        padding: 10px; 
+        border: 1px solid black; 
+        border-radius: 5px; 
+        cursor: pointer; 
     }
 
     .centered-heading {
@@ -54,8 +61,13 @@ Sign Up
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password">
             </div>
-            <button type="submit" class="btn btn-primary submit-btn">Sign Up</button>
+            <button type="submit" class="btn btn-primary submit-btn" onclick="handleSignUp()">Sign Up</button>
         </form>
     </div>
 </div>
+<script>
+    function handleSignUp() {
+        console.log("Sign Up button pressed");
+    }
+</script>
 {% endblock %}

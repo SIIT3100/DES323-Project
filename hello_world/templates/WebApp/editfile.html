@@ -1,0 +1,137 @@
+{% extends 'WebApp/layout/layout_main.html' %}
+
+{% block title %}
+Edit File
+{% endblock %}
+
+{% block content %}
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+            }
+        p {
+                display: inline-block;
+                margin: 0;
+            }
+
+    </style>
+
+ 
+    <div class="container">
+        <table id="myTable" border="1">
+            <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>Sentiment</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td contenteditable="true">The food was terrible</td>
+                    <td contenteditable="true">Negative</td>
+                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">I'm not sure how I feel about this</td>
+                    <td contenteditable="true">Neutral</td>
+                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">The service was excellent</td>
+                    <td contenteditable="true">Positive</td>
+                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">I had a bad experience</td>
+                    <td contenteditable="true">Negative</td>
+                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">This is a great product</td>
+                    <td contenteditable="true">Positive</td>
+                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">I wouldn't recommend this</td>
+                    <td contenteditable="true">Negative</td>
+                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">The price is a bit high</td>
+                    <td contenteditable="true">Neutral</td>
+                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">The weather is perfect today</td>
+                    <td contenteditable="true">Positive</td>
+                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">The traffic is horrible</td>
+                    <td contenteditable="true">Negative</td>
+                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h1></h1>
+
+        <button onclick="addRow()" type="button" class="btn btn-warning btn-rounded">Add Row</button>
+
+        <p style="font-weight: bold;">Title:</p>
+        <p contenteditable="true">Comment from XXX restaurant</p>
+        <p style="font-weight: bold;">Size:</p>
+        <p>50 Kb</p>
+        <p style="font-weight: bold;">Date:</p>
+        <p>2023-10-22</p>
+
+        <button  onclick="update()" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060;float: right;">Update</button>
+        <button  onclick="cancle()" type="button" class="btn btn-light btn-rounded" style= "float: right;">Cancle</button>
+
+        <script>
+            function addRow() {
+                var table = document.getElementById('myTable');
+                var newRow = table.insertRow(table.rows.length);
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+        
+                cell1.innerHTML = "Row " + table.rows.length + ", Column 1";
+                cell2.innerHTML = "Row " + table.rows.length + ", Column 2";
+                cell3.innerHTML = "<button onclick='removeRow(this)' button type='button' class='btn btn-danger btn-rounded'>Delete</button>";
+        
+                cell1.contentEditable = true;
+                cell2.contentEditable = true;
+                
+                console.log("Add Row button pressed");
+            }
+        
+            function removeRow(button) {
+                var row = button.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+                console.log("Delete button pressed");
+            }
+
+            function update(button) {
+                console.log("Update button pressed");
+            }
+
+            function cancle(button) {
+                console.log("Cancle button pressed");
+            }
+        </script>
+    </div>
+{% endblock %}

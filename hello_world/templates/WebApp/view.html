@@ -1,0 +1,64 @@
+{% extends 'WebApp/layout/layout_main.html' %}
+{% load static %}
+
+{% block title %}
+View File
+{% endblock %}
+
+{% block content %}
+<style>
+    table {
+        width: 70%;
+        margin: 0 auto;
+        font-size: 18px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .edit-button {
+        padding: 8px 15px;
+        background-color: #1EA200;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<h2 style="text-align: center;">File Details</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Edit</th>
+            <th>Title</th>
+            <th>Size</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><button class="edit-button" onclick="handleEdit()">Edit</button></td>
+            <td>Comment from XXX restaurant</td>
+            <td>50 Kb</td>
+            <td>2023-10-22</td>
+        </tr>
+        <tr>
+            <td><button class="edit-button" onclick="handleEdit()">Edit</button></td>
+            <td>Comment from XYZ restaurant</td>
+            <td>28 Kb</td>
+            <td>2023-10-21</td> 
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    function handleEdit() {
+        console.log("Edit button pressed");
+    }
+</script>
+
+{% endblock %}
