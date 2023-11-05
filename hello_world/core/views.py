@@ -13,8 +13,8 @@ def login(request):
     return render(request, "WebApp/login.html", context=context)
 
 def signup(request):
-    context = {}
-    return render(request, 'WebApp/reg.html', context=context)
+   context = {}
+   return render(request, 'WebApp/reg.html', context=context)
 
 def home(request):
    context = {}
