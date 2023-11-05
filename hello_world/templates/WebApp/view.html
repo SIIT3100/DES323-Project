@@ -41,34 +41,44 @@ View File
         </tr>
     </thead>
     <tbody>
+        {% for row in datasets %}
         <tr>
             <td>
-                <button type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin:5px" onclick="handleEdit()" >Edit</button>
-                <button button type="button" class="btn btn-danger btn-rounded" onclick="deleteFile()" style="margin:5px;">Delete</button>
+                <button type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin:5px" onclick="handleEdit({{ row.fID  }})" >Edit</button>
+                <button button type="button" class="btn btn-danger btn-rounded"  onclick="deleteFile({{ row.fID  }});" style="margin:5px;">Delete</button>
             </td>
-            <td>Comment from XXX restaurant</td>
-            <td>50 Kb</td>
-            <td>2023-10-22</td>
+            <td>{{ row.fName  }}</td>
+            <td>{{ row.file.size|filesizeformat}}</td>
+            <td>{{ row.fDateTime|date:"d/m/Y"}}</td>
         </tr>
-        <tr>
-            <td>
-                <button type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin:5px" onclick="handleEdit()" >Edit</button>
-                <button button type="button" class="btn btn-danger btn-rounded" onclick="deleteFile()" style="margin:5px;">Delete</button>
-            </td>
-            <td>Comment from XYZ restaurant</td>
-            <td>28 Kb</td>
-            <td>2023-10-21</td>
-        </tr>
+    {% endfor %}
     </tbody>
 </table>
 </div>
 
 <script>
-    function handleEdit() {
+    function handleEdit(fid) {
         console.log("Edit button pressed");
+        console.log("FID:",fid);
+
+        // Create anchor element. 
+        //var a = document.createElement('a');  
+                  
+        // Create the text node for anchor element. 
+        var link = "/application/files/edit/"+fid; 
+                    
+        window.location.href = link;
     }
-    function deleteFile(button) {
+    function deleteFile(fid) {
         console.log("File deleted");
+        console.log("FID:",fid);
+        // Create anchor element. 
+        var a = document.createElement('a');  
+                  
+        // Create the text node for anchor element. 
+        var link = "/application/files/delete/"+fid; 
+                    
+        window.location.href = link;
     }
 </script>
 
