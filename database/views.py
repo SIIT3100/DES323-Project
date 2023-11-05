@@ -93,6 +93,7 @@ from django.shortcuts import render, HttpResponse, redirect
 import json
 import requests
 from .models import File
+from django.core.files.base import ContentFile
 
 def database_item_edit(request, id):
     try:
@@ -139,7 +140,15 @@ def database_item_edit(request, id):
 
     #print(responses)
     print(combined_data)
+    
+    # Serialize the combined data as a JSON string
+    combined_json = json.dumps(combined_data)
 
+    # Create a ContentFile from the serialized JSON data
+    combined_json_file = ContentFile(combined_json.encode('utf-8'))
+
+    # Update the 'file' field of the item with the new content
+    item.file.save("new_file.json", combined_json_file)
 
     context_data = {
         'item_id': id,
