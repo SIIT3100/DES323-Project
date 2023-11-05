@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 from hello_world.core import views as core_views
 from database import views as database_views
 
+from database import views as database_views
+
 urlpatterns = [
     path("", core_views.index),
     path("admin/", admin.site.urls),
@@ -29,8 +31,11 @@ urlpatterns = [
     path("application/login", core_views.login),
     path("application/register", core_views.signup),
     path("application/home", core_views.home),
-    path("application/files", core_views.view_file, name='view_file'),
-    path('application/files/n', core_views.edit_file, name='edit_file'),
+    #path("application/files", core_views.view_file, name='view_file'),
+    path("application/files/id/<fuid>", database_views.database_item_list_by_id),
+    path("application/files/delete/<id>", database_views.database_item_delete),
+    path("application/files/edit/<id>", database_views.database_item_edit),
+    #path('application/files/<id>', core_views.edit_file, name='edit_file'),
     path('application/test', core_views.testContent),
     #path('admin/userdata', database_views.signup, name='user_data'),
 ]
