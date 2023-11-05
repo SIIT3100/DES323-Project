@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
+
 from django.contrib import messages
 from .models import User
 
@@ -30,8 +30,6 @@ def list(request):
 
     return render(request, 'WebApp/list_view.html')
 
-
-=======
 from django.http import HttpResponse
 from database.models import File,User 
 import requests 
@@ -151,4 +149,3 @@ def database_item_edit(request, id):
     }
 
     return render(request, 'WebApp/editfile.html', context= context_data)
->>>>>>> origin/main-temp
