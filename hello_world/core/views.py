@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.http import HttpResponse
+from .models import User
 import os
 
 def index(request):
@@ -13,8 +15,32 @@ def login(request):
     return render(request, "WebApp/login.html", context=context)
 
 def signup(request):
-   context = {}
-   return render(request, 'WebApp/reg.html', context=context)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if password == confirm_password:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, 'Username is already taken')
+                return redirect('application/register')  # Redirect to the signup page if username exists
+
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'Email is already registered')
+                return redirect('application/register')  # Redirect to the signup page if email exists
+
+            # Create a new user with Django's built-in create_user method
+            new_user = User(username=username, email=email, password=password)
+            new_user.save()
+
+            messages.success(request, 'You are registered and can now log in')
+            return redirect('application/login')  # Redirect to the login page
+        else:
+            messages.error(request, 'Passwords do not match')
+            return redirect('application/register')  # Redirect to the signup page
+
+    return render(request, 'WebApp/reg.html')
 
 def home(request):
    context = {}
