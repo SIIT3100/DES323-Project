@@ -32,7 +32,7 @@ urlpatterns = [
     path("application/files", core_views.view_file, name='view_file'),
     path('application/files/n', core_views.edit_file, name='edit_file'),
     path('application/test', core_views.testContent),
-    path('admin/userdata', database_views.signup, name='user_data'),
+    #path('admin/userdata'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse
 from .models import User
-import os
 
-def signup(request):
+def list(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
@@ -29,6 +27,6 @@ def signup(request):
             messages.error(request, 'Passwords do not match')
             return redirect('application/register')  # Redirect to the signup page
 
-    return render(request, 'WebApp/reg.html')
+    return render(request, 'WebApp/list_view.html')
 
 
