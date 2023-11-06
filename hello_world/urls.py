@@ -30,13 +30,14 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path("application/login", core_views.login),
     path("application/register", core_views.signup),
-    path("application/home", core_views.home),
+    path("application/home.main", core_views.home1),
     #path("application/files", core_views.view_file, name='view_file'),
     path("application/files/id/<fuid>", database_views.database_item_list_by_id),
     path("application/files/delete/<id>", database_views.database_item_delete),
     path("application/files/edit/<id>", database_views.database_item_edit),
     #path('application/files/<id>', core_views.edit_file, name='edit_file'),
-    path('application/test', core_views.testContent),
+    path('application/home.show', core_views.home2),
+    path('application/home.show.test', core_views.home2test),
     #path('admin/userdata', database_views.signup, name='user_data'),
 ]
 if settings.DEBUG:

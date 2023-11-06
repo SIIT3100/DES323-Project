@@ -72,8 +72,6 @@ def database_item_delete(request, id):
             }
     }
 
-    
-
     url = "https://twinword-twinword-bundle-v1.p.rapidapi.com/sentiment_analyze/"
 
     querystring = {"text":"great value in its price range!"}

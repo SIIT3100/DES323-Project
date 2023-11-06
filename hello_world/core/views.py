@@ -16,13 +16,17 @@ def signup(request):
     context = {}
     return render(request, 'WebApp/reg.html', context=context)
 
-def home(request):
+def home1(request):
    context = {}
    return render(request, "WebApp/home.html", context=context)
 
-def testContent(request):
+def home2(request):
     context = {}
-    return render(request, "WebApp/testPage.html", context=context)
+    return render(request, "WebApp/homeShow.html", context=context)
+
+def home2test(request):
+    context = {}
+    return render(request, "WebApp/homeShowTest.html", context=context)
 
 def uploadfile(request):
     context = {}
