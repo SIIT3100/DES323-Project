@@ -6,3 +6,5 @@ Please always run
 
 `python manage.py makemigrations`
 `python manage.py migrate`
+
+*BRANCH NOTE / IMPORTANT: This branch is a backup branch of the pre-DB and API implementation. There is only one version.
