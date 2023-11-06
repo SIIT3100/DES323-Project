@@ -20,11 +20,11 @@ def home1(request):
    context = {}
    return render(request, "WebApp/home.html", context=context)
 
-def home2(request):
+def home2test(request):
     context = {}
     return render(request, "WebApp/homeShow.html", context=context)
 
-def home2test(request):
+def home2(request):
     context = {}
     return render(request, "WebApp/homeShowTest.html", context=context)
 
