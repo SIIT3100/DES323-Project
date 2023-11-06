@@ -37,6 +37,7 @@ urlpatterns = [
     #path('application/files/<id>', core_views.edit_file, name='edit_file'),
     path('application/test', core_views.testContent),
     path("api/delete/<id>", database_views.api_item_delete),
+    path("api/process/<id>", database_views.api_item_process),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -139,13 +139,12 @@ def database_item_edit(request, id):
 
 #api
 @csrf_exempt
-def api_item_delete(request,id):
+def api_item_delete(request, id):
     if request.method == "DELETE":
-        #data = JSONParser().parse(request)
-        #serializer = AuthenticationAPISerializer(data=data)
+        
         dataset_objs = File.objects.filter(fID=id)
         if len(dataset_objs) <= 0:
-            return HttpResponse("ID Not found")
+            return JsonResponse({"status":"Failed","message":"Not Found"}, status=400)
         Uid = dataset_objs.first().fUID.UID
         dataset_objs.delete()
 
@@ -155,4 +154,73 @@ def api_item_delete(request,id):
             "datasets":dataset_objs
         }
         #dataset_objs.delete()
-        return render(request, 'WebApp/view.html' , context= context_data)
+        return JsonResponse({"status":"Success","message":"Row Deleted"}, status=200)
+    return JsonResponse({"status":"Failed","message":"False Method"}, status=400)
+
+
+@csrf_exempt
+def api_item_process(request, id):
+    if request.method == "POST":
+        try:
+            item = File.objects.get(fID=id)
+        except File.DoesNotExist:
+            return JsonResponse({"status":"Failed","message":"Not Found"}, status=400)
+
+        # Extract the content of the 'file' FieldFile as a string
+        try:
+            file_content = item.file.read().decode('utf-8')  # Assuming it's a text file
+        except AttributeError:
+            return JsonResponse({"status":"Failed","message":"Incorrect Format"}, status=400)
+
+        json_data = json.loads(file_content)
+
+        # Print the JSON data for debugging
+        print(json_data)
+
+        url = "https://twinword-twinword-bundle-v1.p.rapidapi.com/sentiment_analyze/"
+
+        headers = {
+            "X-RapidAPI-Key": "88584e470amsh820791e23792648p1e6451jsne53bd64fe92d",
+            "X-RapidAPI-Host": "twinword-twinword-bundle-v1.p.rapidapi.com"
+        }
+
+        responses = []
+        combined_data=[]
+
+        for sentence_data in json_data:
+            sentence = sentence_data.get("message", "")
+            querystring = {"text": sentence}
+            response = requests.get(url, headers=headers, params=querystring)
+            responses.append(response.json())
+
+            #print(response.json())
+
+            # Combine message and response into a dictionary
+            combined_entry = {
+                "message": sentence,
+                "sentiment_response": response.json()
+            }
+
+            combined_data.append(combined_entry)
+
+        #print(responses)
+        print(combined_data)
+        
+        # Serialize the combined data as a JSON string
+        combined_json = json.dumps(combined_data)
+
+        # Create a ContentFile from the serialized JSON data
+        combined_json_file = ContentFile(combined_json.encode('utf-8'))
+
+        # Update the 'file' field of the item with the new content
+        item.file.save("new_file.json", combined_json_file)
+
+        context_data = {
+            'item_id': id,
+            'form_data': {
+                'file': json_data
+            }
+        }
+
+        return JsonResponse({"status":"Success","message":"File Processed"}, status=200)
+    return JsonResponse({"status":"Failed","message":"False Method"}, status=400)
