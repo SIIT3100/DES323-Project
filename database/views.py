@@ -1,7 +1,19 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, HttpResponse, redirect
 from django.http import HttpResponse
 from database.models import File,User 
 import requests 
+import json
+import requests
+from django.core.files.base import ContentFile
+
+from django.contrib.auth.models import User
+from database.serializers import *
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+from rest_framework.parsers import JSONParser
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 def database_item_list_by_id (request, fuid):
@@ -58,11 +70,7 @@ def database_item_delete(request, id):
 
     return render(request, 'WebApp/editfile.html', context= context_data)'''
 
-from django.shortcuts import render, HttpResponse, redirect
-import json
-import requests
-from .models import File
-from django.core.files.base import ContentFile
+
 
 def database_item_edit(request, id):
     try:
@@ -127,3 +135,24 @@ def database_item_edit(request, id):
     }
 
     return render(request, 'WebApp/editfile.html', context= context_data)
+
+
+#api
+@csrf_exempt
+def api_item_delete(request,id):
+    if request.method == "DELETE":
+        #data = JSONParser().parse(request)
+        #serializer = AuthenticationAPISerializer(data=data)
+        dataset_objs = File.objects.filter(fID=id)
+        if len(dataset_objs) <= 0:
+            return HttpResponse("ID Not found")
+        Uid = dataset_objs.first().fUID.UID
+        dataset_objs.delete()
+
+        dataset_objs = File.objects.filter(fUID__UID=Uid)
+        context_data = {
+            "filter_type":str(id),
+            "datasets":dataset_objs
+        }
+        #dataset_objs.delete()
+        return render(request, 'WebApp/view.html' , context= context_data)
