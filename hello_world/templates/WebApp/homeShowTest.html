@@ -1,0 +1,229 @@
+{% extends 'WebApp/layout/layout_main.html' %}
+{% load static %}
+
+{% block title %}
+View File
+{% endblock %}
+
+{% block content %}
+<style>
+    
+    table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+            margin-left: auto; 
+            margin-right: auto;
+            }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+            }
+        p {
+                display: inline-block;
+                margin: 0;
+            }
+            
+        .container {
+            display: flex;
+        }
+        #pie-chart, table {
+            flex: 1;
+        }
+
+        .pie-chart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+</style>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pie Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+  <div class="mb-5">
+    <h1 class="pie-chart-container mb-4" style="margin-top: 10px; text-align: center;">Comment from XYZ restaurant</h1>
+    <div id="pie-chart" class="pie-chart-container"></div>
+    <script>
+      const jsonData = [
+        {
+          'message': 'I really enjoyed the movie',
+          'sentiment_response': {
+            'type': 'positive',
+            'score': 0.590978614
+          }
+        },
+        {
+          'message': 'The food was terrible',
+          'sentiment_response': {
+            'type': 'negative',
+            'score': -0.994119085
+          }
+        },
+        {
+          'message': "I'm not sure how I feel about this",
+          'sentiment_response': {
+            'type': 'negative',
+            'score': -0.15006856933333335
+          }
+        },
+        {
+          'message': 'The service was excellent',
+          'sentiment_response': {
+            'type': 'positive',
+            'score': 0.451105082
+          }
+        },
+        {
+          'message': 'I had a bad experience',
+          'sentiment_response': {
+            'type': 'negative',
+            'score': -0.577771508
+          }
+        },
+        {
+          'message': 'This is a great product',
+          'sentiment_response': {
+            'type': 'positive',
+            'score': 0.797954407
+          }
+        },
+        {
+          'message': "I wouldn't recommend this",
+          'sentiment_response': {
+            'type': 'negative',
+            'score': -0.6446214715
+          }
+        },
+        {
+          'message': 'The price is a bit high',
+          'sentiment_response': {
+            'type': 'positive',
+            'score': 0.19877699799999998
+          }
+        }
+      ];
+
+      // Calculate the number of positive and negative sentiment scores
+      const positiveCount = jsonData.filter(item => item.sentiment_response.type === 'positive').length;
+      const negativeCount = jsonData.filter(item => item.sentiment_response.type === 'negative').length;
+      const neutralCount = jsonData.length - (positiveCount + negativeCount);
+
+      // Prepare data for the pie chart
+      const data = [
+        { label: 'Positive', value: positiveCount },
+        { label: 'Negative', value: negativeCount }
+      ];
+
+      function renderPieChart(data, colors) {
+        const width = 400;
+        const height = 400;
+        const radius = Math.min(width, height) / 2;
+
+        const svg = d3.select('#pie-chart')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+          .append('g')
+          .attr('transform', `translate(${width / 2},${height / 2})`);
+
+        const color = d3.scaleOrdinal().range(colors);
+
+        const pie = d3.pie()
+          .sort(null)
+          .value(d => d.value);
+
+        const path = d3.arc()
+          .outerRadius(radius - 10)
+          .innerRadius(0);
+
+        const dataReady = pie(data);
+
+        const arc = svg.selectAll('path')
+          .data(dataReady)
+          .enter()
+          .append('path')
+          .attr('d', path)
+          .attr('fill', (d, i) => color(i));
+      }
+
+      const customColors = ['#34eb7a', '#eb4034']; // Green for positive and red for negative
+      renderPieChart(data, customColors);
+    </script>
+  </div>
+</body>
+</html>
+
+<div>
+    <h4 class="pie-chart-container">Statistics Table</h4>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Color</th>
+                <th>Type</th>
+                <th>Percent</th>
+                <th>Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="background-color:#34eb7a ;"></td>
+                <td>Positive</td>
+                <td id="positivePercent">0%</td>
+                <td id="positiveCount">0</td>
+            </tr>
+            <tr>
+                <td style="background-color:#eb4034 ;"></td>
+                <td>Negative</td>
+                <td id="negativePercent">0%</td>
+                <td id="negativeCount">0</td>
+            </tr>
+            <tr>
+                <td style="background-color:#ebb134 ;"></td>
+                <td>Neutral</td>
+                <td id="neutralPercent">0%</td>
+                <td id="neutralCount">0</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        const total = jsonData.length;
+        const positivePercent = ((positiveCount / total) * 100).toFixed(2) + '%';
+        const negativePercent = ((negativeCount / total) * 100).toFixed(2) + '%';
+        const neutralPercent = ((neutralCount / total) * 100).toFixed(2) + '%';
+        document.getElementById('positivePercent').textContent = positivePercent;
+        document.getElementById('positiveCount').textContent = positiveCount;
+        document.getElementById('negativePercent').textContent = negativePercent;
+        document.getElementById('negativeCount').textContent = negativeCount;
+        document.getElementById('neutralPercent').textContent = neutralPercent;
+        document.getElementById('neutralCount').textContent = neutralCount;
+    </script>
+</div>
+
+<div class="mb-5 mt-3" style="display:flex;justify-content: center;align-items: center;">
+    <button  onclick="view()" type="button" class="btn btn-dark btn-rounded" style= "margin-top:5px">View This File</button>
+    <button  onclick="select()" type="button" class="btn btn-dark btn-rounded" style="margin-left:15px; margin-top:5px">Select Other File</button>    
+</div>
+<script>
+    function view(button) {
+        console.log("View button pressed");
+    }
+    function select(button) {
+        console.log("Select button pressed");
+    }
+</script>
+
+
+</body>
+{% endblock %}
