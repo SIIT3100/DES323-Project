@@ -28,6 +28,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("application/login", core_views.login),
+    path("application/login/<Username>/<Password>", database_views.database_login),
     path("application/register", core_views.signup),
     path("application/home", core_views.home),
     #path("application/files", core_views.view_file, name='view_file'),

@@ -17,8 +17,20 @@ from django.views.decorators.csrf import csrf_exempt
 
 from datetime import datetime
 
-import io
+
 # Create your views here.
+def database_login(request, Username, Password):
+    dataset_objs = Users.objects.filter(username=Username)
+    if len(dataset_objs) <= 0:
+        return HttpResponse("User Not found" )
+    dataset_objs = Users.objects.filter(username=Username,password = Password)
+    if len(dataset_objs) <= 0:
+        return HttpResponse("Wrong Password!" )
+    
+    print("Help")
+    print(dataset_objs.first().UID)
+    return redirect('database_item_upload', uid=dataset_objs.first().UID)
+
 def database_item_upload (request, uid):
     #dataset_objs = File.objects.filter(fUID__UID=uid)
     #if len(dataset_objs) <= 0:
@@ -28,26 +40,13 @@ def database_item_upload (request, uid):
     }
     return render(request, 'WebApp/upload.html' , context= context_data)
 
+
+
 def database_item_add(request, uid):
     if request.method=="POST":
         #print("help")
         csv = request.FILES["Files"]
-        csv_data = []
-        csv_text = csv.read().decode("utf-8").splitlines()
-        csv_lines = csv_text.split('\n')
-            
-        # Assuming the first row contains column headers
-        headers = csv_lines[0].split(',')
-            
-        for line in csv_lines[1:]:  # Skip the header line
-            values = line.split(',')
-            row = {}
-            for i, header in enumerate(headers):
-                row[header] = values[i]
-            csv_data.append(row)
-        # Convert the CSV data to JSON
-        json_data = json.dumps(csv_data, indent=4)
-        
+
         Uid, created = Users.objects.get_or_create(UID=uid)
         audio_file = File.objects.create(
                                     fName=csv.name,
@@ -61,9 +60,6 @@ def database_item_add(request, uid):
     
     return redirect('database_item_upload', uid=uid)
             
-        
-    
-
 
 def database_item_list_by_id (request, fuid):
     dataset_objs = File.objects.filter(fUID__UID=fuid)
@@ -132,7 +128,7 @@ def database_item_edit(request, id):
         file_content = item.file.read().decode('utf-8')  # Assuming it's a text file
     except AttributeError:
         return HttpResponse("File content not found")
-
+    
     json_data = json.loads(file_content)
 
     # Print the JSON data for debugging
@@ -273,3 +269,4 @@ def api_item_process(request, id):
 
         return JsonResponse({"status":"Success","message":"File Processed"}, status=200)
     return JsonResponse({"status":"Failed","message":"False Method"}, status=400)
+      
