@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import HttpResponse
-from database.models import File,User 
+from database.models import File
+from database.models import User as Users
 import requests 
 import json
 import requests
@@ -14,8 +15,48 @@ from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from datetime import datetime
+
 
 # Create your views here.
+def database_item_upload (request, uid):
+    #dataset_objs = File.objects.filter(fUID__UID=uid)
+    #if len(dataset_objs) <= 0:
+        #return HttpResponse("ID Not found" )
+    context_data = {
+        "filter_type":str(uid)
+    }
+    return render(request, 'WebApp/upload.html' , context= context_data)
+
+def database_item_add(request, uid):
+    print("a")
+    
+    #dataset_objs = User.objects.get(id=uid)
+    form_data = request.POST.get('files')
+    #dataset_objs = Users.objects.filter(UID=uid)
+    # Get or create a Studio_name instance based on the form data
+    Uid, created = Users.objects.get_or_create(UID=uid)
+    print(Uid)
+    new_item = File(
+        fName="a",
+        file=form_data,
+        fDateTime=datetime.now(),
+        fUID=Uid,
+    )
+    try:
+        new_item.save()
+    except:
+        return HttpResponse ("ERROR!" )
+        
+    
+    context_data = {
+        "filter_type":str(uid)
+    }
+
+    print("new_item")
+    return render(request, 'WebApp/upload.html' , context= context_data)
+
+
 def database_item_list_by_id (request, fuid):
     dataset_objs = File.objects.filter(fUID__UID=fuid)
     #if len(dataset_objs) <= 0:
