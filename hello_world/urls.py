@@ -34,6 +34,8 @@ urlpatterns = [
     path("application/home.result.test", core_views.home2),
     path("application/home.result", core_views.home2),
     #path("application/files", core_views.view_file, name='view_file'),
+    path("application/files/upload/<uid>", database_views.database_item_upload, name="database_item_upload"),
+    path("application/files/add/<uid>", database_views.database_item_add,name="database_item_add"),
     path("application/files/id/<fuid>", database_views.database_item_list_by_id),
     path("application/files/delete/<id>", database_views.database_item_delete),
     path("application/files/edit/<id>", database_views.database_item_edit),

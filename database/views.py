@@ -1,9 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import HttpResponse
-from database.models import File,User 
+from database.models import File
+from database.models import User as Users
 import requests 
 import json
 import requests
+import io
+
 from django.core.files.base import ContentFile
 
 from django.contrib.auth.models import User
@@ -14,6 +17,7 @@ from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from datetime import datetime
 from django.contrib import messages
 from .models import User
 
@@ -44,8 +48,53 @@ def list(request):
 
     return render(request, 'WebApp/list_view.html')
 
-
 # Create your views here.
+def database_item_upload (request, uid):
+    #dataset_objs = File.objects.filter(fUID__UID=uid)
+    #if len(dataset_objs) <= 0:
+        #return HttpResponse("ID Not found" )
+    context_data = {
+        "filter_type":str(uid)
+    }
+    return render(request, 'WebApp/upload.html' , context= context_data)
+
+def database_item_add(request, uid):
+    if request.method=="POST":
+        #print("help")
+        csv = request.FILES["Files"]
+        csv_data = []
+        csv_text = csv.read().decode("utf-8").splitlines()
+        csv_lines = csv_text.split('\n')
+            
+        # Assuming the first row contains column headers
+        headers = csv_lines[0].split(',')
+            
+        for line in csv_lines[1:]:  # Skip the header line
+            values = line.split(',')
+            row = {}
+            for i, header in enumerate(headers):
+                row[header] = values[i]
+            csv_data.append(row)
+        # Convert the CSV data to JSON
+        json_data = json.dumps(csv_data, indent=4)
+        
+        Uid, created = Users.objects.get_or_create(UID=uid)
+        audio_file = File.objects.create(
+                                    fName=csv.name,
+                                    file=csv,
+                                    fDateTime=datetime.now(),
+                                    fUID=Uid,
+                                      )
+        audio_path= audio_file.file.path
+        return redirect('database_item_upload', uid=uid)
+    
+    
+    return redirect('database_item_upload', uid=uid)
+            
+        
+    
+
+
 def database_item_list_by_id (request, fuid):
     dataset_objs = File.objects.filter(fUID__UID=fuid)
     #if len(dataset_objs) <= 0:
