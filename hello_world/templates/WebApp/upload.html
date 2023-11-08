@@ -7,14 +7,12 @@ Main Page
 {% block content %}
     <h1>Upload A File</h1>
     {% for uid in filter_type %}
-    <div class="download-container">
-        <form action="" method="post" >
+    <div id="fileform" style="display:flex;justify-content:center;align-items:center;margin-top: 10px;">
+        <form method="post" enctype="multipart/form-data" action="{% url 'database_item_add' uid %}">
             {% csrf_token %}
-            <div class="file-upload" id="file-upload">
-                <input type="file" name="files" id="files" accept="" />
-                <p>Drag & Drop .txt File Or Click To Select A .txt File</p>
-            </div>
-            <button button type="button" class="btn btn-danger btn-rounded"  onclick="UploadFile({{ filter_type  }});" style="margin:5px;">Upload</button>
+            <label for="audio"><strong>Upload File: </strong></label>
+            <input type="file" name="Files" accept=".csv, text/csv"><br><br>
+            <button type="submit">Submit</button>
         </form>
     </div>
     {% endfor %}

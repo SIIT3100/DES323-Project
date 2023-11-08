@@ -17,7 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from datetime import datetime
 
-
+import io
 # Create your views here.
 def database_item_upload (request, uid):
     #dataset_objs = File.objects.filter(fUID__UID=uid)
@@ -29,32 +29,40 @@ def database_item_upload (request, uid):
     return render(request, 'WebApp/upload.html' , context= context_data)
 
 def database_item_add(request, uid):
-    print("a")
+    if request.method=="POST":
+        #print("help")
+        csv = request.FILES["Files"]
+        csv_data = []
+        csv_text = csv.read().decode("utf-8").splitlines()
+        csv_lines = csv_text.split('\n')
+            
+        # Assuming the first row contains column headers
+        headers = csv_lines[0].split(',')
+            
+        for line in csv_lines[1:]:  # Skip the header line
+            values = line.split(',')
+            row = {}
+            for i, header in enumerate(headers):
+                row[header] = values[i]
+            csv_data.append(row)
+        # Convert the CSV data to JSON
+        json_data = json.dumps(csv_data, indent=4)
+        
+        Uid, created = Users.objects.get_or_create(UID=uid)
+        audio_file = File.objects.create(
+                                    fName=csv.name,
+                                    file=csv,
+                                    fDateTime=datetime.now(),
+                                    fUID=Uid,
+                                      )
+        audio_path= audio_file.file.path
+        return redirect('database_item_upload', uid=uid)
     
-    #dataset_objs = User.objects.get(id=uid)
-    form_data = request.POST.get('files')
-    #dataset_objs = Users.objects.filter(UID=uid)
-    # Get or create a Studio_name instance based on the form data
-    Uid, created = Users.objects.get_or_create(UID=uid)
-    print(Uid)
-    new_item = File(
-        fName="a",
-        file=form_data,
-        fDateTime=datetime.now(),
-        fUID=Uid,
-    )
-    try:
-        new_item.save()
-    except:
-        return HttpResponse ("ERROR!" )
+    
+    return redirect('database_item_upload', uid=uid)
+            
         
     
-    context_data = {
-        "filter_type":str(uid)
-    }
-
-    print("new_item")
-    return render(request, 'WebApp/upload.html' , context= context_data)
 
 
 def database_item_list_by_id (request, fuid):
