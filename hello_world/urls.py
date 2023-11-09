@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 # from . import views
 
 from hello_world.core import views as core_views
+from database import views as database_views
 
 from database import views as database_views
 
@@ -32,6 +33,10 @@ urlpatterns = [
     path("application/register", core_views.signup, name="register"),
     path("application/registers", database_views.database_create_new_user,name="database_create_new_user"),
     path("application/home", core_views.home),
+    path("application/register", core_views.signup),
+    path("application/home.main", core_views.home1),
+    path("application/home.result.test", core_views.home2),
+    path("application/home.result", core_views.home2),
     #path("application/files", core_views.view_file, name='view_file'),
     path("application/files/upload/<uid>", database_views.database_item_upload, name="database_item_upload"),
     path("application/files/add/<uid>", database_views.database_item_add,name="database_item_add"),
@@ -39,7 +44,7 @@ urlpatterns = [
     path("application/files/delete/<id>", database_views.database_item_delete),
     path("application/files/edit/<id>", database_views.database_item_edit),
     #path('application/files/<id>', core_views.edit_file, name='edit_file'),
-    path('application/test', core_views.testContent),
+    #path('application/test', core_views.testContent),
     path("api/delete/<id>", database_views.api_item_delete),
     path("api/process/<id>", database_views.api_item_process),
 ]

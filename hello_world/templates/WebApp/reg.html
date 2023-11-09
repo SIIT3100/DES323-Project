@@ -63,11 +63,11 @@ Sign Up
                 <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password"name="confirm_password">
             </div>
             <button type="submit" class="btn btn-primary submit-btn" >Sign Up</button>
+            <button type="submit" class="btn btn-primary submit-btn" onclick="sendData">Sign Up</button>
         </form>
     </div>
 </div>
 <script>
-    
     function handleSignUp(Username,Password,Confirm_password,Email) {
 
             console.log("SignUp");
@@ -88,6 +88,42 @@ Sign Up
             console.log("Link:", link);
 
             window.location.href = link;
+    //function handleSignUp() {
+    //    console.log("Sign Up button pressed");
+    //}
+    function sendData(event) {
+        event.preventDefault(); // Prevent the default form submission
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirm_password = document.getElementById('confirm_password').value;
+
+        const userData = {
+            username: username,
+            email: email,
+            password: password
+        };
+
+        fetch('/WebApp/list_view', {
+            method: 'POST',
+            body: JSON.stringify(userData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Data sent successfully');
+                // Perform any other necessary actions upon successful submission
+            } else {
+                console.error('Failed to send data');
+                // Handle the error or retry submission
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle errors that may occur during the process
+        });
     }
 </script>
 {% endblock %}
