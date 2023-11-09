@@ -16,20 +16,49 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from datetime import datetime
+from django.urls import reverse
 
 
 # Create your views here.
-def database_login(request, Username, Password):
-    dataset_objs = Users.objects.filter(username=Username)
-    if len(dataset_objs) <= 0:
-        return HttpResponse("User Not found" )
-    dataset_objs = Users.objects.filter(username=Username,password = Password)
-    if len(dataset_objs) <= 0:
-        return HttpResponse("Wrong Password!" )
-    
-    print("Help")
-    print(dataset_objs.first().UID)
-    return redirect('database_item_upload', uid=dataset_objs.first().UID)
+def database_login(request):
+    if request.method=="POST":
+        Username=request.POST["username"]
+        Password=request.POST["password"]
+        dataset_objs = Users.objects.filter(username=Username)
+        if len(dataset_objs) <= 0:
+            return HttpResponse("User Not found" )
+        dataset_objs = Users.objects.filter(username=Username,password = Password)
+        if len(dataset_objs) <= 0:
+            return HttpResponse("Wrong Password!" )
+        
+        print("Help")
+        print(dataset_objs.first().UID)
+        return redirect('database_item_upload', uid=dataset_objs.first().UID)
+
+def database_create_new_user(request):
+    if request.method=="POST":
+        Email =request.POST["email"]
+        Username=request.POST["username"]
+        Password=request.POST["password"]
+        dataset_objs = Users.objects.filter(email = Email)
+        if len(dataset_objs) > 0:
+            return HttpResponse("Already have this Email" )
+        
+        dataset_objs = Users.objects.filter(username=Username)
+        if len(dataset_objs) > 0:
+            return HttpResponse("Already have this username" )
+        
+        New_User  = Users.objects.create(
+                                        username=Username,
+                                        email=Email,
+                                        password=Password,
+                                        pfp="www.a.com",
+                                        )
+
+        dataset_objs = Users.objects.filter(username=Username)
+        print("Help")
+        print(dataset_objs.first().UID)
+        return redirect('database_item_upload', uid=dataset_objs.first().UID)
 
 def database_item_upload (request, uid):
     #dataset_objs = File.objects.filter(fUID__UID=uid)
