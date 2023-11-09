@@ -40,6 +40,9 @@ def database_create_new_user(request):
         Email =request.POST["email"]
         Username=request.POST["username"]
         Password=request.POST["password"]
+        Confirm_pass = request.POST["confirm_password"]
+        if Confirm_pass != Password:
+            return redirect('register')
         dataset_objs = Users.objects.filter(email = Email)
         if len(dataset_objs) > 0:
             return HttpResponse("Already have this Email" )

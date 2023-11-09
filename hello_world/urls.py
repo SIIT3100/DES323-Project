@@ -29,7 +29,7 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path("application/login", core_views.login),
     path("application/logins", database_views.database_login,name="database_login"),
-    path("application/register", core_views.signup),
+    path("application/register", core_views.signup, name="register"),
     path("application/registers", database_views.database_create_new_user,name="database_create_new_user"),
     path("application/home", core_views.home),
     #path("application/files", core_views.view_file, name='view_file'),
