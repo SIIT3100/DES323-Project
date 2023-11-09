@@ -18,6 +18,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from datetime import datetime
+from django.urls import reverse
 from django.contrib import messages
 from .models import User
 
@@ -49,6 +50,49 @@ def list(request):
     return render(request, 'WebApp/list_view.html')
 
 # Create your views here.
+def database_login(request):
+    if request.method=="POST":
+        Username=request.POST["username"]
+        Password=request.POST["password"]
+        dataset_objs = Users.objects.filter(username=Username)
+        if len(dataset_objs) <= 0:
+            return HttpResponse("User Not found" )
+        dataset_objs = Users.objects.filter(username=Username,password = Password)
+        if len(dataset_objs) <= 0:
+            return HttpResponse("Wrong Password!" )
+        
+        print("Help")
+        print(dataset_objs.first().UID)
+        return redirect('database_item_upload', uid=dataset_objs.first().UID)
+
+def database_create_new_user(request):
+    if request.method=="POST":
+        Email =request.POST["email"]
+        Username=request.POST["username"]
+        Password=request.POST["password"]
+        Confirm_pass = request.POST["confirm_password"]
+        if Confirm_pass != Password:
+            return redirect('register')
+        dataset_objs = Users.objects.filter(email = Email)
+        if len(dataset_objs) > 0:
+            return HttpResponse("Already have this Email" )
+        
+        dataset_objs = Users.objects.filter(username=Username)
+        if len(dataset_objs) > 0:
+            return HttpResponse("Already have this username" )
+        
+        New_User  = Users.objects.create(
+                                        username=Username,
+                                        email=Email,
+                                        password=Password,
+                                        pfp="www.a.com",
+                                        )
+
+        dataset_objs = Users.objects.filter(username=Username)
+        print("Help")
+        print(dataset_objs.first().UID)
+        return redirect('database_item_upload', uid=dataset_objs.first().UID)
+
 def database_item_upload (request, uid):
     #dataset_objs = File.objects.filter(fUID__UID=uid)
     #if len(dataset_objs) <= 0:
@@ -58,26 +102,13 @@ def database_item_upload (request, uid):
     }
     return render(request, 'WebApp/upload.html' , context= context_data)
 
+
+
 def database_item_add(request, uid):
     if request.method=="POST":
         #print("help")
         csv = request.FILES["Files"]
-        csv_data = []
-        csv_text = csv.read().decode("utf-8").splitlines()
-        csv_lines = csv_text.split('\n')
-            
-        # Assuming the first row contains column headers
-        headers = csv_lines[0].split(',')
-            
-        for line in csv_lines[1:]:  # Skip the header line
-            values = line.split(',')
-            row = {}
-            for i, header in enumerate(headers):
-                row[header] = values[i]
-            csv_data.append(row)
-        # Convert the CSV data to JSON
-        json_data = json.dumps(csv_data, indent=4)
-        
+
         Uid, created = Users.objects.get_or_create(UID=uid)
         audio_file = File.objects.create(
                                     fName=csv.name,
@@ -91,9 +122,6 @@ def database_item_add(request, uid):
     
     return redirect('database_item_upload', uid=uid)
             
-        
-    
-
 
 def database_item_list_by_id (request, fuid):
     dataset_objs = File.objects.filter(fUID__UID=fuid)
@@ -160,7 +188,7 @@ def database_item_edit(request, id):
         file_content = item.file.read().decode('utf-8')  # Assuming it's a text file
     except AttributeError:
         return HttpResponse("File content not found")
-
+    
     json_data = json.loads(file_content)
 
     # Print the JSON data for debugging

@@ -47,25 +47,47 @@ Sign Up
 
 <div class="center-content">
     <div class="form-container">
-        <form action="/register" method="post">
+        <form action="{% url 'database_create_new_user' %}" method="post">
+            {% csrf_token %}
             <h1 class="centered-heading">SIGN UP</h1>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username" id="username">
+                <input type="text" class="form-control" placeholder="Username" id="username" name="username" >
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email" id="email">
+                <input type="email" class="form-control" placeholder="Email" id="email" name="email">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" id="password">
+                <input type="password" class="form-control" placeholder="Password" id="password" name="password">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password">
+                <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password"name="confirm_password">
             </div>
+            <button type="submit" class="btn btn-primary submit-btn" >Sign Up</button>
             <button type="submit" class="btn btn-primary submit-btn" onclick="sendData">Sign Up</button>
         </form>
     </div>
 </div>
 <script>
+    function handleSignUp(Username,Password,Confirm_password,Email) {
+
+            console.log("SignUp");
+            console.log("Username:",Username);
+            console.log("Email:",Email);
+            console.log("Password:",Password);
+            // Create anchor element. 
+            var a = document.createElement('a');  
+
+            if (Confirm_password != Password){
+                return console.log("Wrong")
+            }
+
+                    
+            // Create the text node for anchor element. 
+            var link = "/application/registers/"+Username+"/"+Password+"/"+Email; 
+                        
+            console.log("Link:", link);
+
+            window.location.href = link;
     //function handleSignUp() {
     //    console.log("Sign Up button pressed");
     //}

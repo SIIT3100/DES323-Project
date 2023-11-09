@@ -17,44 +17,7 @@ Main Page
     </div>
     {% endfor %}
     <script>
-        // Get references to the HTML elements
-        const fileInput = document.getElementById("fileInput");
-        const fileUpload = document.getElementById("file-upload");
-    
-        // Prevent the default behavior of the browser when a file is dragged over the drop area
-        fileUpload.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            fileUpload.classList.add("dragover");
-        });
-    
-        // Restore the default styles when the file is dragged out of the drop area
-        fileUpload.addEventListener("dragleave", () => {
-            fileUpload.classList.remove("dragover");
-        });
-    
-        // Handle the file drop event
-        fileUpload.addEventListener("drop", (e) => {
-            e.preventDefault();
-            fileUpload.classList.remove("dragover");
-    
-            const droppedFile = e.dataTransfer.files[0];
-    
-            // Check if the dropped file has a .txt extension
-            if (droppedFile.name.endsWith(".txt")) {
-                fileInput.files = e.dataTransfer.files;
-                fileInput.value = droppedFile.name;
-            } else {
-                alert("Only .txt files are allowed for upload.");
-            }
-        });
-    
-        // Handle the file input change event
-        fileInput.addEventListener("change", () => {
-            const selectedFile = fileInput.files[0];
-            if (selectedFile) {
-                fileUpload.classList.remove("dragover");
-            }
-        });
+        
 
         function UploadFile(uid) {
             console.log("File uploaded");
