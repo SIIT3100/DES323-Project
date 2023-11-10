@@ -32,7 +32,7 @@ urlpatterns = [
     path("application/logins", database_views.database_login,name="database_login"),
     path("application/register", core_views.signup, name="register"),
     path("application/registers", database_views.database_create_new_user,name="database_create_new_user"),
-    path("application/home", core_views.home),
+    #path("application/home", core_views.home),
     path("application/register", core_views.signup),
     path("application/home.main", core_views.home1),
     path("application/home.result.test", core_views.home2),
