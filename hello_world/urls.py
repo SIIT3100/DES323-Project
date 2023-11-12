@@ -37,11 +37,12 @@ urlpatterns = [
     path("application/home.result/<fid>", database_views.database_statistic, name="core_views_homeShowTest"),
     path("application/files/add/<uid>", database_views.database_item_add,name="database_item_add"),
     path("application/files/<fuid>", database_views.database_item_list_by_id),
-    #path("application/files/s/<fuid>", # specific file)
+    path("application/files/s/<fuid>", # specific file
     path("application/files/delete/<id>", database_views.database_item_delete),
     path("application/files/edit/<id>", database_views.database_item_edit),
     path("api/delete/<id>", database_views.api_item_delete),
     path("api/process/<id>", database_views.api_item_process),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
