@@ -28,6 +28,10 @@ def home2(request):
     context = {}
     return render(request, "WebApp/homeShowTest.html", context=context)
 
+def aboutus(request):
+    context = {}
+    return render(request, "WebApp/about.html", context=context)
+
 def uploadfile(request):
     context = {}
     return render(request, "WebApp/upload.html", context=context)
