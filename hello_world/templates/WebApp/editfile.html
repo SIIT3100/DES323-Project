@@ -28,6 +28,14 @@ Edit File
 
     </style>
 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pie Chart</title>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    </head>
+
  
     <div class="container">
         <table id="myTable" border="1">
@@ -39,51 +47,15 @@ Edit File
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td contenteditable="true">The food was terrible</td>
-                    <td contenteditable="true">Negative</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">I'm not sure how I feel about this</td>
-                    <td contenteditable="true">Neutral</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">The service was excellent</td>
-                    <td contenteditable="true">Positive</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">I had a bad experience</td>
-                    <td contenteditable="true">Negative</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">This is a great product</td>
-                    <td contenteditable="true">Positive</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">I wouldn't recommend this</td>
-                    <td contenteditable="true">Negative</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">The price is a bit high</td>
-                    <td contenteditable="true">Neutral</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">The weather is perfect today</td>
-                    <td contenteditable="true">Positive</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">The traffic is horrible</td>
-                    <td contenteditable="true">Negative</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
+                {% for data_item in datasets %}
+                    <tr>
+                        <!-- Access the properties of each dataset item and display them in the table -->
+                        <td contenteditable="true">{{ data_item.message }}</td>
+                        <td contenteditable="false">{{ data_item.sentiment_response.type }}</td>
+                        <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
 
@@ -103,7 +75,8 @@ Edit File
         </div>
 
         <div class="mb-5">
-            <button  onclick="update()" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button>
+            <p>Filter Type: {{ filter_type }}</p>
+            <button  onclick="update({{ filter_type }})" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button>
             <button  onclick="cancle()" type="button" class="btn btn-light btn-rounded" style="margin-left:15px; margin-top:5px">Cancel</button>    
         </div>
 
@@ -131,8 +104,42 @@ Edit File
                 console.log("Delete button pressed");
             }
 
-            function update(button) {
+            function update(fid) {
                 console.log("Update button pressed");
+                var dataToUpdate = [];
+
+                // Iterate through each row in the table
+                $('#myTable tbody tr').each(function() {
+                    var message = $(this).find('td:eq(0)').text();
+
+                    // Create an object with the updated data
+                    var updatedData = {
+                        message: message,
+                        fid: fid
+                        // Add more properties if needed
+                    };
+
+                    dataToUpdate.push(updatedData);
+                });
+
+                // Send the updated data to the server using AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '/application/files/update',  // Replace with your Django URL endpoint
+                    data: {
+                        'updated_data': JSON.stringify(dataToUpdate),
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include CSRF token for security
+                    },
+                    success: function(response) {
+                        alert('Data updated successfully');
+                        // Handle success as needed
+                    },
+                    error: function(error) {
+                        console.error('Error updating data:', error);
+                        // Handle error as needed
+                    }
+                });
+            
             }
 
             function cancle(button) {
