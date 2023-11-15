@@ -40,7 +40,7 @@ urlpatterns = [
     #path("application/files/s/<fuid>", # specific file)
     path("application/files/delete/<fid>", database_views.database_item_delete),
     path("application/files/edit/<fid>", database_views.database_item_edit, name="database_item_edit"),
-    path("application/files/update", database_views.database_update),
+    path("application/files/update", database_views.database_update, name="database_update"),
     path("api/delete/<id>", database_views.api_item_delete),
     path("api/process/<id>", database_views.api_item_process),
 ]

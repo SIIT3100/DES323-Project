@@ -259,17 +259,12 @@ def database_item_edit(request, fid):
     return render(request, 'WebApp/editfile.html' , context= context_data)
 
 def database_update(request):
-    if request.method == 'POST':
-        updated_data = request.POST.get('updated_data')
-        updated_data = json.loads(updated_data)
-
+    
         
             # Update your database here using the data in data_item
 
-        return JsonResponse({'status': 'success'})
-    else:
-        return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
-
+        return JsonResponse( 'success')
+    
 
 #api
 @csrf_exempt

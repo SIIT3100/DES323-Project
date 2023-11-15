@@ -38,26 +38,32 @@ Edit File
 
  
     <div class="container">
-        <table id="myTable" border="1">
-            <thead>
-                <tr>
-                    <th>Message</th>
-                    <th>Sentiment</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for data_item in datasets %}
+        <form id="editForm" method="post" action="{% url 'database_update' %}">
+            {% csrf_token %}
+            <table id="myTable" border="1">
+                <thead>
                     <tr>
-                        <!-- Access the properties of each dataset item and display them in the table -->
-                        <td contenteditable="true">{{ data_item.message }}</td>
-                        <td contenteditable="false">{{ data_item.sentiment_response.type }}</td>
-                        <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                        <!-- Add more columns as needed -->
+                        <th>Message</th>
+                        <th>Sentiment</th>
+                        <th>Delete</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for data_item in datasets %}
+                        <tr>
+                            <!-- Change the data_item.message to an input field within a form -->
+                            <td><input type="text" name="message" value="{{ data_item.message }}" /></td>
+                            <!-- Access the properties of each dataset item and display them in the table -->
+                            <td>{{ data_item.sentiment_response.type }}</td>
+                            <td><button type="button" onclick="removeRow(this)" class="btn btn-danger btn-rounded">Delete</button></td>
+                            <!-- Add more columns as needed -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit">Save Changes</button>
+        
+        
 
         <h1></h1>
 
@@ -79,7 +85,8 @@ Edit File
             <button  onclick="update({{ filter_type }})" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button>
             <button  onclick="cancle()" type="button" class="btn btn-light btn-rounded" style="margin-left:15px; margin-top:5px">Cancel</button>    
         </div>
-
+        
+    </form>
         <script>
             function addRow() {
                 var table = document.getElementById('myTable');
@@ -106,40 +113,35 @@ Edit File
 
             function update(fid) {
                 console.log("Update button pressed");
-                var dataToUpdate = [];
+                console.log(fid);
+                var tableData = [];
+                $('#myTable tbody tr').each(function () {
+                    var message = $(this).find('td:nth-child(1)').text();
+                    
+                    // Add more fields as needed
 
-                // Iterate through each row in the table
-                $('#myTable tbody tr').each(function() {
-                    var message = $(this).find('td:eq(0)').text();
-
-                    // Create an object with the updated data
-                    var updatedData = {
-                        message: message,
-                        fid: fid
-                        // Add more properties if needed
-                    };
-
-                    dataToUpdate.push(updatedData);
+                    tableData.push({
+                        'message': message,
+                        
+                        // Add more fields as needed
+                    });
                 });
 
-                // Send the updated data to the server using AJAX
+                // Send data to the Django view using AJAX
                 $.ajax({
+                    url: '/application/files/update',
                     type: 'POST',
-                    url: '/application/files/update',  // Replace with your Django URL endpoint
                     data: {
-                        'updated_data': JSON.stringify(dataToUpdate),
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include CSRF token for security
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                        'data': JSON.stringify(tableData),
                     },
-                    success: function(response) {
-                        alert('Data updated successfully');
-                        // Handle success as needed
+                    success: function (response) {
+                        console.log('Data updated successfully');
                     },
-                    error: function(error) {
+                    error: function (error) {
                         console.error('Error updating data:', error);
-                        // Handle error as needed
                     }
                 });
-            
             }
 
             function cancle(button) {
