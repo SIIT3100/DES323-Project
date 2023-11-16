@@ -29,24 +29,20 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("application/login", core_views.login),
-    path("application/logins", database_views.database_login,name="database_login"),
+    path("application/logins/fn.hidden", database_views.database_login,name="database_login"),
     path("application/register", core_views.signup, name="register"),
-    path("application/registers", database_views.database_create_new_user,name="database_create_new_user"),
-    path("application/home", core_views.home),
-    path("application/register", core_views.signup),
-    path("application/home.main", core_views.home1),
-    path("application/home.result.test", core_views.home2),
-    path("application/home.result", core_views.home2),
-    #path("application/files", core_views.view_file, name='view_file'),
-    path("application/files/upload/<uid>", database_views.database_item_upload, name="database_item_upload"),
+    path("application/register/fn.hidden", database_views.database_create_new_user,name="database_create_new_user"),
+    path("application/home/<uid>", database_views.database_item_upload, name="database_item_upload"), # home/upload
+    path("application/home.result", core_views.home2), # result
+    path("application/home.result/<fid>", database_views.database_statistic, name="core_views_homeShowTest"),
     path("application/files/add/<uid>", database_views.database_item_add,name="database_item_add"),
-    path("application/files/id/<fuid>", database_views.database_item_list_by_id),
+    path("application/files/<fuid>", database_views.database_item_list_by_id),
+    path("application/files/s/<fuid>", # specific file
     path("application/files/delete/<id>", database_views.database_item_delete),
     path("application/files/edit/<id>", database_views.database_item_edit),
-    #path('application/files/<id>', core_views.edit_file, name='edit_file'),
-    #path('application/test', core_views.testContent),
     path("api/delete/<id>", database_views.api_item_delete),
     path("api/process/<id>", database_views.api_item_process),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
