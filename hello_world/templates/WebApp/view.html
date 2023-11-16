@@ -48,6 +48,7 @@ View File
                 <button button type="button" class="btn btn-danger btn-rounded"  onclick="deleteFile({{ row.fID  }});" style="margin:5px;">Delete</button>
             </td>
             <td>{{ row.fName  }}</td>
+            <!-- fix the length -->
             <td>{{ row.file.size|filesizeformat}}</td>
             <td>{{ row.fDateTime|date:"d/m/Y"}}</td>
         </tr>

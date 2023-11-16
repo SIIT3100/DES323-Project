@@ -5,13 +5,35 @@ Main Page
 {% endblock %}
 
 {% block content %}
-    <h1>Upload A File</h1>
-    <form method="post", enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="file-upload">
-            <input type="file" name="file" id="fileInput" accept="*/*" />
-            <p>Drag & Drop File Or Click To Select A File</p>
+    <div style="text-align: center;">
+        <h1>Upload A File</h1>
+        {% for uid in filter_type %}
+        <div id="fileform" style="display: inline-block; margin-top: 10px; background-color: #f0f0f0; padding: 10px; border-radius: 8px; border: 2px dashed #ccc;">
+            <form method="post" enctype="multipart/form-data" action="{% url 'database_item_add' uid %}">
+                {% csrf_token %}
+                <label for="audio"><strong>Upload File: </strong></label>
+                <input type="file" name="Files" accept=".csv, text/csv"><br><br>
+                <button type="submit">Submit</button>
+
+                <!-- Added text field for displaying the message -->
+                <div style="margin-top: 10px; font-style: italic; color: #555;">
+                    Pick a file, your visualization will be shown here!
+                </div>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary">Upload</button>
-    </form>
+        {% endfor %}
+    </div>
+    <script>
+        function UploadFile(uid) {
+            console.log("File uploaded");
+            console.log("UID:", uid);
+            // Create anchor element.
+            var a = document.createElement('a');
+
+            // Create the text node for anchor element.
+            var link = "/application/files/add/" + uid;
+
+            window.location.href = link;
+        }
+    </script>
 {% endblock %}

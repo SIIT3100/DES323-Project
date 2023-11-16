@@ -1,0 +1,2338 @@
+[
+  {
+    "message": "I really enjoyed the movie",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The food was terrible",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm not sure how I feel about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service was excellent",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I had a bad experience",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This is a great product",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I wouldn't recommend this",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The price is a bit high",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The weather is perfect today",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The traffic is horrible",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm feeling neutral about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The concert was amazing",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The customer service was terrible",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This book is a masterpiece",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I regret buying this product",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The view from here is breathtaking",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I don't know what to think about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The internet speed is slow",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The museum was fascinating",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The noise level is too high",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I don't have an opinion on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel room was spacious and clean",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The service at this restaurant was awful",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This software is very user-friendly",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The quality of the product is poor",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I don't really care about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The beach was crowded",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This is an excellent company to work for",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The movie was a waste of time",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm undecided about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The game was a complete disaster",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The scenery here is beautiful",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The speaker was very engaging",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I had a great time",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This product is overpriced",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm indifferent to this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The performance was outstanding",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The car broke down on the highway",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I don't have strong feelings about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The food was delicious",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The service at this hotel was terrible",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This phone is amazing",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm not impressed with this",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have mixed feelings about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The weather is terrible today",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The book was a disappointment",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I don't care one way or the other",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hike was exhausting",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This is a fantastic product",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I don't know what to make of this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The customer service was great",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The noise level is tolerable",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel room was dirty and cramped",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm very pleased with this",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The traffic is light",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This movie was boring",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have no opinion on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The beach was beautiful",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The food was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I regret wasting my money on this product",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The view from here is average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The museum was boring",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I don't really care about this topic",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel was noisy at night",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This software is difficult to use",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The game was exciting",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The speaker was boring",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I didn't enjoy this at all",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The car is in great condition",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm not sure what to think about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this restaurant was excellent",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The scenery here is average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This company is terrible",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The movie was great",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm not satisfied with this product",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have no strong feelings about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The weather is wonderful today",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The book was amazing",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I don't have a preference",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hike was refreshing",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This is a terrible product",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The performance was mediocre",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I like this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The food was not very good",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The service at this hotel was great",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This phone is not very user-friendly",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm impressed with this",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The traffic is moderate",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This movie was entertaining",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I have no interest in this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The beach was peaceful",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The food was outstanding",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I regret not buying this product",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The view from here is stunning",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The museum was informative",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I don't have strong feelings either way",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel was comfortable",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This software is very complicated",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The game was challenging",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The speaker was inspiring",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I enjoyed this very much",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The car is not reliable",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm ambivalent about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this restaurant was mediocre",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The scenery here is breathtaking",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This company is excellent",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The movie was okay",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not happy with this product",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I don't really have an opinion on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The weather is nice today",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The book was okay",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I don't care about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hike was invigorating",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This is a terrible company",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The performance was below average",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm not sure if I want to pursue this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The food was not bad",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this hotel was mediocre",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This phone is just okay",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The traffic is heavy",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This movie was disappointing",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm not interested in this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The beach was dirty",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The food was terrible and overpriced",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I regret buying this",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The view from here is unremarkable",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The museum was dull",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have no strong opinion on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel was noisy during the day",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This software is frustrating to use",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The game was boring",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The speaker was uninteresting",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I did not enjoy this",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The car is expensive",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm unsure about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this restaurant was poor",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The scenery here is unimpressive",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This company is awful",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The movie was terrible",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm very unhappy with this product",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have no preference",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The weather is awful today",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The book was boring",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm not interested in this topic",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hike was difficult",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This is a useless product",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The performance was excellent",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm on the fence about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The food was not good",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The service at this hotel was poor",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This phone is disappointing",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The traffic is unbearable",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This movie was not worth watching",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I don't care one way or the other",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The beach was crowded and dirty",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The food was below average",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I regret purchasing this product",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The view from here is unappealing",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The museum was uninteresting",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have no strong feelings about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel was overpriced",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This software is a nightmare to use",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The game was frustrating",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The speaker was dull",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I wouldn't recommend this",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The car is old and unreliable",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm undecided about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this restaurant was terrible",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The scenery here is unremarkable",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This company is horrible",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The movie was not enjoyable",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm dissatisfied with this product",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have no opinion on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The weather is terrible today",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The book was not interesting",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I really enjoyed the movie",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The food was terrible",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm not sure how I feel about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service was excellent",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I had a bad experience",
+    "sentiment": "negative"
+  },
+  {
+    "message": "This is a great product",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I wouldn't recommend this",
+    "sentiment": "negative"
+  },
+  {
+    "message": "The price is a bit high",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I don't care about this subject",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hike was uneventful",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This is an average product",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The performance was good",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have mixed feelings about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The food was satisfactory",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this hotel was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This phone is average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The traffic is typical for this time of day",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This movie was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm indifferent to this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The beach was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The museum was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no opinion on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This software is average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The game was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The speaker was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no strong emotions about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The car is average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I don't have a preference",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this restaurant was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The scenery here is average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This company is average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The book was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no strong feelings one way or the other",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The weather is average today",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not particularly interested in this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hike was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This is a typical product",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The performance was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm neutral on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The food was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this hotel was standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This phone is standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The traffic is normal",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This movie was mediocre",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no strong opinion about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The beach was unremarkable",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The museum was standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no strong feelings about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel was standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This software is standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The game was standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The speaker was standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm indifferent to this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The car is standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no preference",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this restaurant was standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The scenery here is standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This company is standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The book was standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I don't feel strongly about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The weather is normal today",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no particular interest in this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hike was standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This is a regular product",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The performance was satisfactory",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm undecided on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The food was regular",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this hotel was okay",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This phone is regular",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The traffic is average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This movie was regular",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no opinion on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The beach was typical",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The museum was okay",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no strong opinions about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This software is regular",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The game was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The speaker was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm neutral about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The car is average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no preference",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this restaurant was okay",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The scenery here is regular",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This company is regular",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The book was okay",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm neutral on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The weather is regular today",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I don't have a particular interest in this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hike was regular",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This is an ordinary product",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The performance was typical",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm neutral about this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The food was ordinary",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The service at this hotel was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This phone is ordinary",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The traffic is standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This movie was ordinary",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no strong opinions on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The beach was standard",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The museum was average",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have no opinion on this",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The hotel was ordinary",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This software is ordinary",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "The pizza was delicious",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I had an amazing time at the party",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The hotel was great",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This phone is fantastic",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The view from the top was breathtaking",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The customer service was excellent",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love this product",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The movie was fantastic",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I had a great experience",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The food was delicious",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The staff at the restaurant was wonderful",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm really happy with my purchase",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The hotel room was comfortable",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I enjoyed every moment of my vacation",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The service at this spa was amazing",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm impressed with the quality of this product",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The atmosphere at the party was fun",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This restaurant has amazing food",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The staff at the hotel were friendly and helpful",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The concert was incredible",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm in love with this place",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The drinks were great",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The service at this restaurant was excellent",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I can't wait to come back here",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The hotel staff went above and beyond",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so glad I tried this product",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The beach was beautiful",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The staff at the store were so helpful",
+    "sentiment": "positive"
+  },
+  {
+    "message": "This is the best phone I've ever owned",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The show was amazing",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so happy I booked this vacation",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The coffee was excellent",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The staff at the spa were very professional",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm really impressed with this company",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The service at the hotel was outstanding",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The food at this restaurant was top-notch",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love the design of this product",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The hotel amenities were great",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The staff at the museum were very knowledgeable",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I had a wonderful time at the event",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so grateful for the help I received from customer service",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The product exceeded my expectations",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The room was clean and comfortable",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm really enjoying this book",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The service at this salon was top-notch",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so glad I made this purchase",
+    "sentiment": "positive"
+  },
+  {
+    "message": "The food at the wedding was delicious",
+    "sentiment": "positive"
+  },
+  {
+    "message": "Hey.. what's up? 😀",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling so-so 😕",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "Thanks for your help! 🙏",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to do 😕",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "Can we reschedule our meeting? 📅",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm on my way! 🚗",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "This weather is crazy ☀️🌧️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not feeling great 😷",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm looking forward to our vacation! 🌴🏖️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I don't know what I want to eat 🍽️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm in the middle of something. can I call you back later? 📱",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm trying to decide between two options 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "It was nice meeting you! 👋",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just hanging out at home 🏠",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not really sure what you mean 🤷‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm sorry. I can't make it to the party 🎉",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm so tired 😴",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "Can you remind me of the details? 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not feeling very productive today 📉",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just doing some work from home today 💻",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I don't know if I have time for that 🕑",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm doing this right 🤷‍♂️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit overwhelmed 😰",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to wear today 👗",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm thinking about going for a run 🏃‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm ready for this 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just hanging out with friends tonight 🍻",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm really hungry 🍔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit better now 😊",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I can make it to the meeting 🤷‍♂️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not feeling well today 🤒",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm trying to stay positive 😊",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to say 🤷‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling pretty good today 👍",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit lost right now 🌪️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just taking it easy today 🛀",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm ready for this 🙈",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit anxious 😬",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to do next 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not really sure how to respond to that 🤷‍♂️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just enjoying the nice weather ☀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit under the weather 🤧",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I should go to the gym 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit overwhelmed with work 😓",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just relaxing at home 🛋️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I want to do that 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit bored 😐",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm up for that 🤷‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to stay focused 🧐",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit stressed out 😫",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm ready to make that decision 🤷‍♂️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit distracted today 🤯",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm doing this right 🤨",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just hanging out with my family today 👨‍👩‍👧‍👦",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit uncertain about things right now 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to make for dinner 🤷‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just taking it one day at a time 📆",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit restless today 🤫",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm in the mood for that 🤷‍♂️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to stay positive 😌",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit out of my comfort zone 😬",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I can make it to the event 🤷‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just enjoying some alone time 🧘‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit stuck right now 🚶‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to do with my free time 🤷‍♂️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to figure things out 🔍",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit overwhelmed with everything going on 😩",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm making the right decision 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just taking things one step at a time 🚶‍♂️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit frustrated today 😤",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I should say anything 🤫",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to keep things in perspective 🌅",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit confused right now 🤷‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to do next 🤷‍♂️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to stay focused on my goals 🎯",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit lost without my phone 📱",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I should go out tonight 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to find my way 🗺️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit bored with my routine 🥱",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to do with my spare time 🤷‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to keep my head above water 🌊",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit restless today 🕺",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm up for that challenge 🤷‍♂️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to stay positive and keep moving forward 🚶‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit uncertain about the future 🤨",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to do with my life 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to make the most of every day 🌞",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit overwhelmed with everything on my plate 🍽️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I'm ready to take that risk 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to stay focused on my work 💼",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit stressed out today 😩",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure what to do with my weekend 🤷‍♀️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm just trying to find some balance in my life ⚖️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling a bit lost without a plan 📝",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm not sure if I should reach out to them 🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm feeling so happy today 😃",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm loving this beautiful weather ☀️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so grateful for my friends and family 🙏",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling great after my workout this morning 💪",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm enjoying this delicious meal 🍽️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so proud of myself for accomplishing my goals 🏆",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm loving spending time with my significant other ❤️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so blessed to have such amazing people in my life 🥰",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm enjoying this relaxing day at home 🏡",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so inspired by the people around me 💡",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm loving this new book I'm reading 📚",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so motivated to tackle my to-do list today 📝",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm enjoying this beautiful scenery 🌅",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so excited for the future 🔮",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm loving this new hobby I picked up 🎨",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so grateful for all the opportunities in my life 🙌",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm enjoying this fun night out with friends 🎉",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so happy to be alive and healthy 🌟",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm loving this new music I discovered 🎶",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so fulfilled by my work and accomplishments 👍",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm enjoying this much-needed vacation 🌴",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so content with my life right now 😊",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm loving this cozy evening in with a good movie 🍿",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so lucky to have such supportive people in my life 🍀",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm enjoying this beautiful view from the top of the mountain ⛰️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so excited for the concert tonight! 🎤🎶",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just got a promotion at work! 🎉🎊",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love spending time with my family ❤️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I had the best vacation ever! 🌴🌞",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so happy to be back home with my loved ones 😍",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just finished a project I've been working on for months! 💪",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm grateful for all the good things in my life 🙏",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just got a surprise visit from an old friend! 😃",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love trying new foods and flavors! 🍴😋",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I had an amazing date last night 😍",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so proud of my accomplishments this year 🎓",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love spending time in nature 🌳🍂",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just completed a marathon! 🏃‍♀️🏅",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so grateful for the people in my life who support me 💕",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love seeing my favorite band live in concert! 🤘🎶",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just received a compliment from my boss 🤗",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so happy to be surrounded by positive people! 😊",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love learning new things and expanding my knowledge 📚🤓",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just got a new puppy and he's the cutest thing ever! 🐶❤️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm grateful for the little things in life 🌻",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just won first place in a competition! 🥇🏆",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so lucky to have such a supportive and loving partner 💑💕",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love exploring new places and cultures 🌎🧳",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just achieved a personal goal I set for myself! 🎯💪",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so grateful for the beautiful weather today ☀️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love seeing my friends and catching up with them! 🤗❤️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just received a thoughtful gift from someone special 🎁😍",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so happy to have a job I love and am passionate about 💼😊",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love spending time with my pets 🐱🐶",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just completed a challenging workout! 💪🏋️‍♂️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so grateful for the opportunities I have in life 🙌",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love trying new things and stepping out of my comfort zone! 🌟",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just got a great grade on a test I studied hard for! 📝👍",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so happy to have supportive and loving friends! ❤️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love going on adventures and exploring new things 🏞️🚣‍♀️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just completed a difficult task and it feels amazing! 😎💪",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so grateful for my health and well-being 🏥💪",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love spending time with my significant other and creating new memories ❤️",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just received a promotion at work! 🎉🎊💼",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so happy to be surrounded by positivity and good vibes! 😊✨",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love trying new things and pushing my limits! 🤩💪",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just achieved a major milestone in my personal life! 🌟🎯",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm feeling so down today... 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just found out I didn't get the job I applied for 😢",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate feeling so stressed and overwhelmed 😩",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I had a terrible day at work today 😞",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so disappointed in myself for making that mistake 😞",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just went through a breakup and it hurts so much 😢💔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I can't believe I failed that exam 😭",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate feeling so alone and isolated 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so tired of dealing with drama and negativity 😒",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just lost my wallet and all my important documents... 😫",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so sick and tired of feeling sick and tired 😷😴",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate the way I look in this outfit... 😒",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got into a fight with my best friend 😔💔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so stressed out about everything going on in my life 😞",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate feeling so powerless and helpless 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got some bad news and I don't know how to deal with it 😞",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so disappointed in someone I trusted... 😒💔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I can't believe how much work I have to do and how little time I have 😩💼",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate feeling so anxious and on edge all the time 😔😟",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got rejected by someone I really liked... 😢💔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so tired of feeling like nothing is going right in my life 😒",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate the way people are treating me lately... 😒",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just lost my pet and I'm heartbroken 😭💔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so frustrated with myself for not being able to do better 😤",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate feeling so overwhelmed and out of control 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just lost my job and don't know what to do 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so frustrated with how my day is going 😒",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got into a fight with my partner and it's not going well 😞",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate when things don't go according to plan 🤬",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so disappointed with how things turned out 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got some bad news and I'm feeling down 😞",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so stressed out with everything going on 😩",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate dealing with difficult people 🙄",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got into a car accident and my car is totaled 😢🚗",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so tired of the drama in my life 😴",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just failed a test I studied so hard for 😞📚",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so upset about the way things turned out 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate feeling like I'm not good enough 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got rejected from my dream job 😞💼",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so overwhelmed with everything on my plate 😫",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate dealing with rude and disrespectful people 🤬",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just had a falling out with a close friend 😞",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so disappointed with myself for making a mistake 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate feeling like I'm stuck in a rut 😒",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got into an argument with a family member and it's not going well 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so frustrated with my lack of progress 😞",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate feeling like I'm not in control of my life 😔",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got some bad news about my health 😞🏥",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I'm so stressed out about my financial situation 😩💸",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I hate when things don't go as planned and I have to start over 😒",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just got a raise and my salary is now $75000! 🎉💰",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so excited to be going to Disneyland tomorrow! 🎢🎠",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I had the best sushi for lunch today at this restaurant: http://www.sushifusion.com 🍣😋",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just finished reading an amazing book that I highly recommend! 📚👌",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so happy to be living in my dream apartment with a view of the ocean 🌊😍",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just completed a 5K run in 25 minutes! 🏃‍♀️💪",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm grateful for my new car that gets 40 miles per gallon! 🚗🙏",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love my new dress that I got on sale for only $50! 👗💸",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just booked a trip to Italy and I'm so excited! 🇮🇹🧳",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm so grateful for my health and fitness journey - I've lost 20 pounds! 🏋️‍♀️🥗",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just finished a painting that I'm really proud of! 🎨😊",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I love my new job and the people I work with! 💼😍",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just got a text from my crush asking me out on a date! 😍📱",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I'm grateful for my supportive community and the positive energy they bring! 💕🙏",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I just had the best cup of coffee at this new cafe in town: https://www.cafeculture.com ☕️😋",
+    "sentiment": "positive"
+  },
+  {
+    "message": "I need to buy 5 oranges for my recipe today 🍊",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "Can you send me the link to the article you mentioned earlier? 📝🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I have a dentist appointment tomorrow at 2pm 🦷😬",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I need to water my plants before I leave for work 🌱💦",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm going to the grocery store after work to buy some milk and bread 🛍️🍞",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm working on a project with a deadline of next week 🗓️📈",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm taking a break from work to stretch my legs 🚶‍♀️💪",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I need to clean my apartment before my parents come to visit this weekend 🧹🏠",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm watching a movie and eating popcorn right now 🍿🎥",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I need to call my insurance company to update my policy 📞🤔",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm studying for my final exams next week 📚📝",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm planning a road trip for this summer with my friends 🚗🌴",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm browsing the internet for ideas on how to decorate my apartment 🖥️🛋️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I'm doing laundry and folding my clothes right now 🧺👕",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I need to buy new shoes for work. my old ones are worn out 👞🛍️",
+    "sentiment": "neutral"
+  },
+  {
+    "message": "I just got a $500 ticket for parking in the wrong spot 😠🎫",
+    "sentiment": "negative"
+  },
+  {
+    "message": "My phone bill this month is $200 more than usual. I don't know why 📱💸",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I tried a new restaurant and got food poisoning. now I'm stuck in bed 😷🤢",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I can't believe my rent just went up $300. how am I supposed to afford that? 🏠💰",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have to work on Saturday this week and I was planning to go to a concert 😩🎶",
+    "sentiment": "negative"
+  },
+  {
+    "message": "My internet has been down all day and I can't get any work done 🖥️🤬",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I lost my credit card and someone just charged $1000 on it 🤦‍♀️💳",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I missed my flight and had to buy a new ticket for $500 😭🛫",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I got a bad haircut and now I have to wear a hat all week 🧢💇‍♀️",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I got a parking ticket while I was at the doctor's office. even though I parked in the designated spot 🚗🎫",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have to cancel my vacation plans because I can't get time off work 😞🌴",
+    "sentiment": "negative"
+  },
+  {
+    "message": "My computer crashed and I lost all my important files 😱💻",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I got into a car accident and my car is totaled 😔🚗",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I have a cold and can't stop coughing. it's really hard to sleep 😷🤧",
+    "sentiment": "negative"
+  },
+  {
+    "message": "I just found out my ex is dating someone new. I feel so heartbroken 💔😢",
+    "sentiment": "negative"
+  }
+]
