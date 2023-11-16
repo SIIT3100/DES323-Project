@@ -42,9 +42,6 @@ View File
             justify-content: center;
             align-items: center;
         }
-
-        
-
 </style>
 
 <html lang="en">
@@ -60,64 +57,9 @@ View File
     <h1 class="pie-chart-container mb-4" style="margin-top: 10px; text-align: center;">Comment from Product A</h1>
     <div id="pie-chart" class="pie-chart-container"></div>
     <script>
-      const jsonData = [
-        {
-          'message': 'I really enjoyed the movie, had a great time',
-          'sentiment_response': {
-            'type': 'positive',
-            'score': 0.590978614
-          }
-        },
-        {
-          'message': 'The food was terrible. bad service',
-          'sentiment_response': {
-            'type': 'negative',
-            'score': -0.994119085
-          }
-        },
-        {
-          'message': "I'm not sure how I feel about this",
-          'sentiment_response': {
-            'type': 'negative',
-            'score': -0.15006856933333335
-          }
-        },
-        {
-          'message': 'The service was excellent, great product',
-          'sentiment_response': {
-            'type': 'positive',
-            'score': 0.451105082
-          }
-        },
-        {
-          'message': 'I had a bad experience, poor time',
-          'sentiment_response': {
-            'type': 'negative',
-            'score': -0.577771508
-          }
-        },
-        {
-          'message': 'This is a great product',
-          'sentiment_response': {
-            'type': 'positive',
-            'score': 0.797954407
-          }
-        },
-        {
-          'message': "I wouldn't recommend this, bad product, really horrible product",
-          'sentiment_response': {
-            'type': 'negative',
-            'score': -0.6446214715
-          }
-        },
-        {
-          'message': 'The price is a bit high',
-          'sentiment_response': {
-            'type': 'positive',
-            'score': 0.19877699799999998
-          }
-        }
-      ];
+      const jsonData = {{ datasets|safe }};
+        // Now, jsonData is a valid JSON string that can be parsed in JavaScript
+        //console.log(JSON.parse(jsonData));
 
       const positiveCount = jsonData.filter(item => item.sentiment_response.type === 'positive').length;
       const negativeCount = jsonData.filter(item => item.sentiment_response.type === 'negative').length;
@@ -343,7 +285,6 @@ View File
         console.log("Select button pressed");
     }
 </script>
-
 
 </body>
 {% endblock %}

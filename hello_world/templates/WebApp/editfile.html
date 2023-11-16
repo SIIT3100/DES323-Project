@@ -28,8 +28,17 @@ Edit File
 
     </style>
 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pie Chart</title>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    </head>
+
  
     <div class="container">
+        <!-- your_template.html -->
         <table id="myTable" border="1">
             <thead>
                 <tr>
@@ -39,53 +48,18 @@ Edit File
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td contenteditable="true">The food was terrible</td>
-                    <td contenteditable="true">Negative</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">I'm not sure how I feel about this</td>
-                    <td contenteditable="true">Neutral</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">The service was excellent</td>
-                    <td contenteditable="true">Positive</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">I had a bad experience</td>
-                    <td contenteditable="true">Negative</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">This is a great product</td>
-                    <td contenteditable="true">Positive</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">I wouldn't recommend this</td>
-                    <td contenteditable="true">Negative</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">The price is a bit high</td>
-                    <td contenteditable="true">Neutral</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">The weather is perfect today</td>
-                    <td contenteditable="true">Positive</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">The traffic is horrible</td>
-                    <td contenteditable="true">Negative</td>
-                    <td><button onclick='removeRow(this)' button type="button" class="btn btn-danger btn-rounded">Delete</button></td>
-                </tr>
+                {% for data_item in datasets %}
+                    <tr>
+                        <td><input type="text" name="message" value="{{ data_item.message }}" /></td>
+                        <td>{{ data_item.sentiment_response.type }}</td>
+                        <td><button type="button" onclick="removeRow(this)" class="btn btn-danger btn-rounded">Delete</button></td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
+
+        <!-- Submit button outside the table -->
+        <button type="button" onclick="submitMessages()" class="btn btn-primary btn-rounded">Submit Messages</button>
 
         <h1></h1>
 
@@ -103,10 +77,48 @@ Edit File
         </div>
 
         <div class="mb-5">
-            <button  onclick="update()" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button>
+            <p>Filter Type: {{ filter_type }}</p>
+            <button  onclick="update({{ filter_type }})" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button>
             <button  onclick="cancle()" type="button" class="btn btn-light btn-rounded" style="margin-left:15px; margin-top:5px">Cancel</button>    
         </div>
+        <!-- Include jQuery library -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+        <!-- Add this script -->
+        <script>
+            function submitMessages() {
+                var messages = [];
+
+                // Iterate through each row in the table
+                $('#myTable tbody tr').each(function () {
+                    // Get the value from the "message" input field in each row
+                    var message = $(this).find('input[name="message"]').val();
+                    
+                    // Add the message to the array
+                    messages.push(message);
+                });
+
+                // Convert the array to JSON (optional, based on your needs)
+                var messagesJson = JSON.stringify(messages);
+
+                // Perform the submission or further processing with the messages
+                // Example: Send the data to the server using AJAX
+                $.ajax({
+                    url: '/submit_messages/',  // Replace with your server endpoint
+                    type: 'POST',
+                    data: { messages: messagesJson },
+                    success: function (response) {
+                        console.log('Messages submitted successfully');
+                    },
+                    error: function (error) {
+                        console.error('Error submitting messages', error);
+                    }
+                });
+            }
+        </script>
+
+        
+  
         <script>
             function addRow() {
                 var table = document.getElementById('myTable');
@@ -131,8 +143,37 @@ Edit File
                 console.log("Delete button pressed");
             }
 
-            function update(button) {
+            function update(fid) {
                 console.log("Update button pressed");
+                console.log(fid);
+                var tableData = [];
+                $('#myTable tbody tr').each(function () {
+                    var message = $(this).find('td:nth-child(1)').text();
+                    
+                    // Add more fields as needed
+
+                    tableData.push({
+                        'message': message,
+                        
+                        // Add more fields as needed
+                    });
+                });
+
+                // Send data to the Django view using AJAX
+                $.ajax({
+                    url: '/application/files/update',
+                    type: 'POST',
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                        'data': JSON.stringify(tableData),
+                    },
+                    success: function (response) {
+                        console.log('Data updated successfully');
+                    },
+                    error: function (error) {
+                        console.error('Error updating data:', error);
+                    }
+                });
             }
 
             function cancle(button) {
