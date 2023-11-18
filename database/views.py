@@ -98,7 +98,8 @@ def database_item_upload (request, uid):
     #if len(dataset_objs) <= 0:
         #return HttpResponse("ID Not found" )
     context_data = {
-        "filter_type":str(uid)
+        "filter_type":str(uid),
+        "uid":str(uid),
     }
     return render(request, 'WebApp/upload.html' , context= context_data)
 
@@ -184,12 +185,12 @@ def database_item_add(request, uid):
             item.file.save("new_file.json", combined_json_file)
             fid = item.fID
 
-            return redirect('database_homeShowTest' , fid=fid)
+            return redirect('database_homeShowTest' , fid=fid, uid=uid)
     
     
     return redirect('database_item_upload', uid=uid)
 
-def database_statistic (request, fid):
+def database_statistic (request, fid, uid):
     try:
         item = File.objects.get(fID=fid)
     except File.DoesNotExist:
@@ -202,10 +203,12 @@ def database_statistic (request, fid):
         return HttpResponse("File content not found")
     
     json_data = json.loads(file_content)
+    
     #if len(dataset_objs) <= 0:
         #return HttpResponse("ID Not found" )
     context_data = {
         "filter_type":str(fid),
+        "uid":str(uid),
         "datasets":json_data
     }
     return render(request, 'WebApp/homeShowTest.html' , context= context_data)
@@ -217,6 +220,7 @@ def database_item_list_by_id (request, fuid):
         #return HttpResponse("ID Not found" )
     context_data = {
         "filter_type":str(id),
+        "uid":str(fuid),
         "datasets":dataset_objs
     }
     return render(request, 'WebApp/view.html' , context= context_data)
@@ -231,6 +235,7 @@ def database_item_delete(request, fid):
     dataset_objs = File.objects.filter(fUID__UID=Uid)
     context_data = {
         "filter_type":str(fid),
+        "uid":str(Uid),
         "datasets":dataset_objs
     }
     #dataset_objs.delete()
@@ -250,26 +255,48 @@ def database_item_edit(request, fid):
         return HttpResponse("File content not found")
     
     json_data = json.loads(file_content)
+    Uid = item.fUID.UID
     #if len(dataset_objs) <= 0:
         #return HttpResponse("ID Not found" )
     context_data = {
         "filter_type":str(fid),
+        "uid":str(Uid),
         "datasets":json_data
     }
     return render(request, 'WebApp/editfile.html' , context= context_data)
 
-# views.py
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 
-def submit_messages(request):
+
+def update_name(request, fid):
     if request.method == 'POST':
-        messages_json = request.POST.get('messages')
-        messages = json.loads(messages_json)
+        new_fName = request.POST.get('new_fName')
+        fID = request.POST.get('fID')
         
-        # Process the messages as needed (e.g., save to the database)
+        try:
+            # Use get() instead of filter() to get a single instance
+            item = File.objects.get(fID=fid)
+        except File.DoesNotExist:
+            return HttpResponse("ID Not found")
+        
+        # Update the attributes and save the model instance
+        item.fName = new_fName
+        item.fDateTime = datetime.now()
+        item.save()
 
-        return JsonResponse({'status': 'success'})
+        Uid = item.fUID.UID
+
+        return redirect('database_item_list_by_id', fuid=Uid)
+
+    # Handle other cases or render a response if needed
+    return HttpResponse("Invalid request")
+        
+        
+
+    # Handle other cases or render a response if needed
+    return HttpResponse("Invalid request")
+
+
+    
 
 #api
 @csrf_exempt
