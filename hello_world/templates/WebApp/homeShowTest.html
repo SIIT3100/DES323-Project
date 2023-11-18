@@ -42,23 +42,24 @@ View File
             justify-content: center;
             align-items: center;
         }
-
 </style>
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pie Chart</title>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <meta charset="UTF-8">
+  <title>Pie Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.rawgit.com/jasondavies/d3-cloud/v1.2.5/build/d3.layout.cloud.js"></script>
 </head>
 <body>
-    <table border="1">
+  <div>
+      <table border="1">
         <thead>
             <tr>
                 <!-- Define your table headers based on your dataset structure -->
-                <th>Column1</th>
-                <th>Column2</th>
+                <th>Message</th>
+                <th>Sentiment</th>
                 <!-- Add more headers as needed -->
             </tr>
         </thead>
@@ -72,123 +73,241 @@ View File
                 </tr>
             {% endfor %}
         </tbody>
+      </table>
+  </div>
+  <div class="mb-5" style="background-color: #f0f0f0; padding:5px">
+    <h1 class="pie-chart-container mb-4" style="margin-top: 10px; text-align: center;">Comment from Product A</h1>
+    <div id="pie-chart" class="pie-chart-container"></div>
+    <script>
+      const jsonData = {{ datasets|safe }};
+        // Now, jsonData is a valid JSON string that can be parsed in JavaScript
+        //console.log(JSON.parse(jsonData));
+
+      const positiveCount = jsonData.filter(item => item.sentiment_response.type === 'positive').length;
+      const negativeCount = jsonData.filter(item => item.sentiment_response.type === 'negative').length;
+      const neutralCount = jsonData.length - (positiveCount + negativeCount);
+
+      const data = [
+        { label: 'Positive', value: positiveCount },
+        { label: 'Negative', value: negativeCount }
+      ];
+
+      function renderPieChart(data, colors) {
+        const width = 400;
+        const height = 400;
+        const radius = Math.min(width, height) / 2;
+
+        const svg = d3.select('#pie-chart')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+          .append('g')
+          .attr('transform', `translate(${width / 2},${height / 2})`);
+
+        const color = d3.scaleOrdinal().range(colors);
+
+        const pie = d3.pie()
+          .sort(null)
+          .value(d => d.value);
+
+        const path = d3.arc()
+          .outerRadius(radius - 10)
+          .innerRadius(0);
+
+        const dataReady = pie(data);
+
+        const arc = svg.selectAll('path')
+          .data(dataReady)
+          .enter()
+          .append('path')
+          .attr('d', path)
+          .attr('fill', (d, i) => color(i));
+      }
+
+      const customColors = ['#34eb7a', '#eb4034']; // Green for positive and red for negative
+      renderPieChart(data, customColors);
+    </script>
+  </div>
+
+<!-- Add these elements after the existing scripts -->
+<div class="wordcloud-container container" style="display: flex; justify-content: space-around; text-align: center;">
+
+  <div style="background-color: #f0f0f0; padding: 8px; border-radius: 10px;">
+    <p class="wc mb-2" style="margin-top: 10px; font-weight: bold;">Positive Comments WordCloud</p>
+    <div id="positive-wordcloud"></div>
+  </div>
+
+  <div style="background-color: #f0f0f0; padding: 8px; border-radius: 10px;">
+    <p class="wc mb-2" style="margin-top: 10px; font-weight: bold">Negative Comments WordCloud</p>
+    <div id="negative-wordcloud"></div>
+  </div>
+
+</div>
+  
+
+<script>
+  // Predefined list of stop words
+  const stopWords = [
+    'a', 'about', 'above', 'after', 'again', 'against', 'all', 'am', 'an', 'and',
+    'any', 'are', 'aren\'t', 'as', 'at', 'be', 'because', 'been', 'before', 'being',
+    'below', 'between', 'both', 'but', 'by', 'can\'t', 'cannot', 'could', 'couldn\'t',
+    'did', 'didn\'t', 'do', 'does', 'doesn\'t', 'doing', 'don\'t', 'down', 'during',
+    'each', 'few', 'for', 'from', 'further', 'had', 'hadn\'t', 'has', 'hasn\'t',
+    'have', 'haven\'t', 'having', 'he', 'he\'d', 'he\'ll', 'he\'s', 'her', 'here',
+    'here\'s', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'how\'s', 'i',
+    'i\'d', 'i\'ll', 'i\'m', 'i\'ve', 'if', 'in', 'into', 'is', 'isn\'t', 'it', 'it\'s',
+    'its', 'itself', 'let\'s', 'me', 'more', 'most', 'mustn\'t', 'my', 'myself',
+    'no', 'nor', 'not', 'of', 'off', 'on', 'once', 'only', 'or', 'other', 'ought',
+    'our', 'ours', 'ourselves', 'out', 'over', 'own', 'same', 'shan\'t', 'she',
+    'she\'d', 'she\'ll', 'she\'s', 'should', 'shouldn\'t', 'so', 'some', 'such',
+    'than', 'that', 'that\'s', 'the', 'their', 'theirs', 'them', 'themselves',
+    'then', 'there', 'there\'s', 'these', 'they', 'they\'d', 'they\'ll', 'they\'re',
+    'they\'ve', 'this', 'those', 'through', 'to', 'too', 'under', 'until', 'up',
+    'very', 'was', 'wasn\'t', 'we', 'we\'d', 'we\'ll', 'we\'re', 'we\'ve', 'were',
+    'weren\'t', 'what', 'what\'s', 'when', 'when\'s', 'where', 'where\'s', 'which',
+    'while', 'who', 'who\'s', 'whom', 'why', 'why\'s', 'with', 'won\'t', 'would',
+    'wouldn\'t', 'you', 'you\'d', 'you\'ll', 'you\'re', 'you\'ve', 'your', 'yours',
+    'yourself', 'yourselves'
+  ];
+
+  // Extract positive and negative messages
+  const positiveMessages = jsonData
+    .filter(item => item.sentiment_response.type === 'positive')
+    .map(item => item.message.toLowerCase().split(/\s+/))
+    .flat()
+    .filter(word => !stopWords.includes(word));
+
+  const negativeMessages = jsonData
+    .filter(item => item.sentiment_response.type === 'negative')
+    .map(item => item.message.toLowerCase().split(/\s+/))
+    .flat()
+    .filter(word => !stopWords.includes(word));
+
+  // Generate word clouds
+  generateWordCloud('positive-wordcloud', positiveMessages, 'green');
+  generateWordCloud('negative-wordcloud', negativeMessages, 'red');
+
+  function generateWordCloud(containerId, words, color) {
+    const width = 200;
+    const height = 100;
+
+    const svg = d3.select(`#${containerId}`)
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .append('g')
+      .attr('transform', `translate(${width / 2},${height / 2})`);
+
+    const wordFrequencies = calculateWordFrequencies(words);
+
+    const layout = d3.layout.cloud()
+      .size([width, height])
+      .words(wordFrequencies.map(word => ({ text: word.word, size: word.frequency * 10 })))
+      .padding(5)
+      .rotate(() => Math.random() < 0.5 ? 0 : 90)
+      .fontSize(d => d.size)
+      .on('end', draw);
+
+    layout.start();
+
+    function draw(words) {
+      svg.selectAll('text')
+        .data(words)
+        .enter().append('text')
+        .style('font-size', d => d.size)
+        .style('fill', color) // Set text color based on sentiment
+        .attr('text-anchor', 'middle') // Center the text
+        .attr('transform', d => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
+        .text(d => d.text);
+    }
+  }
+
+  function calculateWordFrequencies(words) {
+    const wordCount = {};
+
+    words.forEach(word => {
+      if (wordCount[word]) {
+        wordCount[word]++;
+      } else {
+        wordCount[word] = 1;
+      }
+    });
+
+    const wordFrequencies = Object.keys(wordCount).map(word => ({
+      word,
+      frequency: wordCount[word]
+    }));
+
+    // Sort by frequency in descending order
+    wordFrequencies.sort((a, b) => b.frequency - a.frequency);
+
+    return wordFrequencies.slice(0, 20); // Show the top 20 most frequent words
+  }
+</script>
+</div>
+</body>
+</html>
+
+<div>
+    <h4 class="pie-chart-container" style="margin-top:15px">Statistics Table</h4>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Color</th>
+                <th>Type</th>
+                <th>Percent</th>
+                <th>Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="background-color:#34eb7a ;"></td>
+                <td>Positive</td>
+                <td id="positivePercent">0%</td>
+                <td id="positiveCount">0</td>
+            </tr>
+            <tr>
+                <td style="background-color:#eb4034 ;"></td>
+                <td>Negative</td>
+                <td id="negativePercent">0%</td>
+                <td id="negativeCount">0</td>
+            </tr>
+            <tr>
+                <td style="background-color:#ebb134 ;"></td>
+                <td>Neutral</td>
+                <td id="neutralPercent">0%</td>
+                <td id="neutralCount">0</td>
+            </tr>
+        </tbody>
     </table>
     <script>
-        console.log(File)
-        // Calculate the number of positive and negative sentiment scores
-        const positiveCount = jsonData.filter(item => item.sentiment_response.type === 'positive').length;
-        const negativeCount = jsonData.filter(item => item.sentiment_response.type === 'negative').length;
-        const neutralCount = jsonData.length - (positiveCount + negativeCount);
-  
-        // Prepare data for the pie chart
-        const data = [
-          { label: 'Positive', value: positiveCount },
-          { label: 'Negative', value: negativeCount }
-        ];
-  
-  
-        function renderPieChart(data, colors) {
-          const width = 400;
-          const height = 400;
-          const radius = Math.min(width, height) / 2;
-  
-          const svg = d3.select('#pie-chart')
-            .append('svg')
-            .attr('width', width)
-            .attr('height', height)
-            .append('g')
-            .attr('transform', `translate(${width / 2},${height / 2})`);
-  
-          const color = d3.scaleOrdinal().range(colors);
-  
-          const pie = d3.pie()
-            .sort(null)
-            .value(d => d.value);
-  
-          const path = d3.arc()
-            .outerRadius(radius - 10)
-            .innerRadius(0);
-  
-          const dataReady = pie(data);
-  
-          const arc = svg.selectAll('path')
-            .data(dataReady)
-            .enter()
-            .append('path')
-            .attr('d', path)
-            .attr('fill', (d, i) => color(i));
-        }
-  
-        const customColors = ['#34eb7a', '#eb4034']; // Green for positive and red for negative
-        renderPieChart(data, customColors);
-      </script>
-    </div>
-  </body>
-  </html>
-  
-  <div>
-      <h4 class="pie-chart-container">Statistics Table</h4>
-      <table border="1">
-          <thead>
-              <tr>
-                  <th>Color</th>
-                  <th>Type</th>
-                  <th>Percent</th>
-                  <th>Number</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td style="background-color:#34eb7a ;"></td>
-                  <td>Positive</td>
-                  <td id="positivePercent">0%</td>
-                  <td id="positiveCount">0</td>
-              </tr>
-              <tr>
-                  <td style="background-color:#eb4034 ;"></td>
-                  <td>Negative</td>
-                  <td id="negativePercent">0%</td>
-                  <td id="negativeCount">0</td>
-              </tr>
-              <tr>
-                  <td style="background-color:#ebb134 ;"></td>
-                  <td>Neutral</td>
-                  <td id="neutralPercent">0%</td>
-                  <td id="neutralCount">0</td>
-              </tr>
-          </tbody>
-      </table>
-      <script>
-          const total = jsonData.length;
-          const positivePercent = ((positiveCount / total) * 100).toFixed(2) + '%';
-          const negativePercent = ((negativeCount / total) * 100).toFixed(2) + '%';
-          const neutralPercent = ((neutralCount / total) * 100).toFixed(2) + '%';
-          document.getElementById('positivePercent').textContent = positivePercent;
-          document.getElementById('positiveCount').textContent = positiveCount;
-          document.getElementById('negativePercent').textContent = negativePercent;
-          document.getElementById('negativeCount').textContent = negativeCount;
-          document.getElementById('neutralPercent').textContent = neutralPercent;
-          document.getElementById('neutralCount').textContent = neutralCount;
-      </script>
-  </div>
-  
-  <div class="mb-5 mt-3" style="display:flex;justify-content: center;align-items: center;">
-      <button  onclick="view()" type="button" class="btn btn-dark btn-rounded" style= "margin-top:5px">View This File</button>
-      <button  onclick="select()" type="button" class="btn btn-dark btn-rounded" style="margin-left:15px; margin-top:5px">Select Other File</button>    
-  </div>
-  <script>
-      function view(button) {
-          console.log("View button pressed");
-      }
-      function select(button) {
-          console.log("Select button pressed");
-      }
-  </script>
-  
-  
-  </body>
-
- 
+        const total = jsonData.length;
+        const positivePercent = ((positiveCount / total) * 100).toFixed(2) + '%';
+        const negativePercent = ((negativeCount / total) * 100).toFixed(2) + '%';
+        const neutralPercent = ((neutralCount / total) * 100).toFixed(2) + '%';
+        document.getElementById('positivePercent').textContent = positivePercent;
+        document.getElementById('positiveCount').textContent = positiveCount;
+        document.getElementById('negativePercent').textContent = negativePercent;
+        document.getElementById('negativeCount').textContent = negativeCount;
+        document.getElementById('neutralPercent').textContent = neutralPercent;
+        document.getElementById('neutralCount').textContent = neutralCount;
+    </script>
+</div>
 
 
+<div class="mb-5 mt-3" style="display:flex;justify-content: center;align-items: center;">
+    <button  onclick="view()" type="button" class="btn btn-dark btn-rounded" style= "margin-top:5px">View This File</button>
+    <button  onclick="select()" type="button" class="btn btn-dark btn-rounded" style="margin-left:15px; margin-top:5px">Select Other File</button>    
+</div>
+<script>
+    function view(button) {
+        console.log("View button pressed");
+    }
+    function select(button) {
+        console.log("Select button pressed");
+    }
+</script>
+
+
+</body>
 {% endblock %}

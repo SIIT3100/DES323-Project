@@ -52,7 +52,25 @@
                     <li class="nav-item">
                         <a class="nav-link bold-text" href="#">Files</a>
                     </li>
-                    <button type="submit" onclick="Upload()" class="btn btn-green">Upload</button>
+                    <!--<button type="submit" onclick="Upload()" class="btn btn-green">Upload</button> -->
+                    {% for uid in uid %}
+                        <form method="post" enctype="multipart/form-data" action="{% url 'database_item_add' uid %}">
+                            {% csrf_token %}
+
+                            <!-- Combined button with onclick event -->
+                            <label for="fileInput_{{ uid }}" style="cursor: pointer;"class="btn btn-green" >Upload File</label>
+                            <input type="file" name="Files" id="fileInput_{{ uid }}" accept=".csv, text/csv" style="display:none;" onchange="document.getElementById('submitBtn_{{ uid }}').click();"><br><br>
+
+                            <!-- Submit button (hidden, triggered by file input change) -->
+                            <button type="submit" id="submitBtn_{{ uid }}" style="display:none;">Submit</button>
+
+                            <!-- Added text field for displaying the message -->
+                            <div style="margin-top: 10px; font-style: italic; color: #555;">
+                                Pick a file, your visualization will be shown here!
+                            </div>
+                        </form>
+                    {% endfor %}
+
                     <div class="profile-image">
                         <a class="pfp" href="../application/register"><img src="{% static 'profile.jpg' %}" alt="pfp" width="60" height="60">  Nenechi</a>
                     </div>

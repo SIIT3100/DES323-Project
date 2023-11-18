@@ -42,34 +42,67 @@ View File
     </thead>
     <tbody>
         {% for row in datasets %}
-        <tr>
-            <td>
-                <button type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin:5px" onclick="handleEdit({{ row.fID  }})" >Edit</button>
-                <button button type="button" class="btn btn-danger btn-rounded"  onclick="deleteFile({{ row.fID  }});" style="margin:5px;">Delete</button>
-            </td>
-            <td>{{ row.fName  }}</td>
-            <!-- fix the length -->
-            <td>{{ row.file.size|filesizeformat}}</td>
-            <td>{{ row.fDateTime|date:"d/m/Y"}}</td>
-        </tr>
+        <form method="post" enctype="multipart/form-data" action="{% url 'database_update_name' row.fID %}">
+            {% csrf_token %}
+            <tr>
+                <input type="hidden" name="fID" value="{{ row.fID }}">
+                <input type="hidden" name="new_fName" id="new_fName_input" value="">
+                <td>
+                    <button type="button" class="btn btn-danger btn-rounded" onclick="deleteFile({{ row.fID  }});" style="margin:5px;">Delete</button>
+                    <button type="button" class="btn btn-success btn-rounded" style="background-color: #50a060; margin:5px" id="editButton_{{ row.fID }}" onclick="handleEdit({{ row.fID  }})">Edit</button>
+                    <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #007bff; margin:5px; display:none;" id="confirmButton_{{ row.fID }}" onclick="handleConfirm({{ row.fID }})">Confirm</button>
+                </td>
+                <td id="fName_{{ row.fID }}" class="editable" contenteditable="false">
+                    <a href="{% url 'database_item_edit' fid=row.fID %}">{{ row.fName }}</td>
+                <td>{{ row.file.size|filesizeformat}}</td>
+                <td>{{ row.fDateTime|date:"d/m/Y"}}</td>
+            </tr>
+        </form>
     {% endfor %}
     </tbody>
 </table>
 </div>
 
 <script>
-    function handleEdit(fid) {
-        console.log("Edit button pressed");
-        console.log("FID:",fid);
+    
+    function handleEdit(fID) {
+        var fNameElement = document.getElementById('fName_' + fID);
+        var editButton = document.getElementById('editButton_' + fID);
+        var confirmButton = document.getElementById('confirmButton_' + fID);
 
-        // Create anchor element. 
-        //var a = document.createElement('a');  
-                  
-        // Create the text node for anchor element. 
-        var link = "/application/files/edit/"+fid; 
-                    
-        window.location.href = link;
+        fNameElement.contentEditable = true;
+        fNameElement.classList.add('editable');
+        editButton.style.display = 'none';
+        confirmButton.style.display = 'inline-block';
     }
+
+    function handleConfirm(fID) {
+        var form = document.querySelector('form');
+    if (!form) {
+        console.error('Form element not found.');
+        return;
+    }
+
+    var fNameElement = document.getElementById('fName_' + fID);
+    var editButton = document.getElementById('editButton_' + fID);
+    var confirmButton = document.getElementById('confirmButton_' + fID);
+
+    // Set the 'new_fName' value based on the edited content
+    var new_fName = fNameElement.innerText.trim();
+    console.log('Setting new_fName:', new_fName);
+
+    
+    new_fName_input.value = new_fName;
+
+
+    fNameElement.contentEditable = true;
+    fNameElement.classList.add('editable');
+    editButton.style.display = 'none';
+    confirmButton.style.display = 'inline-block';
+
+    console.log('Submitting form...');
+    form.submit();
+}
     function deleteFile(fid) {
         console.log("File deleted");
         console.log("FID:",fid);

@@ -38,32 +38,28 @@ Edit File
 
  
     <div class="container">
-        <form id="editForm" method="post" action="{% url 'database_update' %}">
-            {% csrf_token %}
-            <table id="myTable" border="1">
-                <thead>
+        <!-- your_template.html -->
+        <table id="myTable" border="1">
+            <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>Sentiment</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data_item in datasets %}
                     <tr>
-                        <th>Message</th>
-                        <th>Sentiment</th>
-                        <th>Delete</th>
+                        <td><input type="text" name="message" value="{{ data_item.message }}" /></td>
+                        <td>{{ data_item.sentiment_response.type }}</td>
+                        <td><button type="button" onclick="removeRow(this)" class="btn btn-danger btn-rounded">Delete</button></td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for data_item in datasets %}
-                        <tr>
-                            <!-- Change the data_item.message to an input field within a form -->
-                            <td><input type="text" name="message" value="{{ data_item.message }}" /></td>
-                            <!-- Access the properties of each dataset item and display them in the table -->
-                            <td>{{ data_item.sentiment_response.type }}</td>
-                            <td><button type="button" onclick="removeRow(this)" class="btn btn-danger btn-rounded">Delete</button></td>
-                            <!-- Add more columns as needed -->
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <button type="submit">Save Changes</button>
-        
-        
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Submit button outside the table -->
+        <button type="button" onclick="submitMessages()" class="btn btn-primary btn-rounded">Submit Messages</button>
 
         <h1></h1>
 
@@ -85,8 +81,44 @@ Edit File
             <button  onclick="update({{ filter_type }})" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button>
             <button  onclick="cancle()" type="button" class="btn btn-light btn-rounded" style="margin-left:15px; margin-top:5px">Cancel</button>    
         </div>
+        <!-- Include jQuery library -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+        <!-- Add this script -->
+        <script>
+            function submitMessages() {
+                var messages = [];
+
+                // Iterate through each row in the table
+                $('#myTable tbody tr').each(function () {
+                    // Get the value from the "message" input field in each row
+                    var message = $(this).find('input[name="message"]').val();
+                    
+                    // Add the message to the array
+                    messages.push(message);
+                });
+
+                // Convert the array to JSON (optional, based on your needs)
+                var messagesJson = JSON.stringify(messages);
+
+                // Perform the submission or further processing with the messages
+                // Example: Send the data to the server using AJAX
+                $.ajax({
+                    url: '/submit_messages/',  // Replace with your server endpoint
+                    type: 'POST',
+                    data: { messages: messagesJson },
+                    success: function (response) {
+                        console.log('Messages submitted successfully');
+                    },
+                    error: function (error) {
+                        console.error('Error submitting messages', error);
+                    }
+                });
+            }
+        </script>
+
         
-    </form>
+  
         <script>
             function addRow() {
                 var table = document.getElementById('myTable');
