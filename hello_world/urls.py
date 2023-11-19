@@ -29,14 +29,14 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("application/aboutus", core_views.aboutus),
-    path("application/<uid>/aboutus", database_views.database_render_aboutus, name="database_render_aboutus"),
+    path("application/aboutus/<uid>", database_views.database_render_aboutus, name="database_render_aboutus"),
     path("application/login", core_views.login,name="core_views_login"),
     path("application/logins/fn.hidden", database_views.database_login,name="database_login"),
     path("application/register", core_views.signup, name="register"),
     path("application/register/fn.hidden", database_views.database_create_new_user,name="database_create_new_user"),
-    path("application/<uid>/home", database_views.database_item_upload, name="database_item_upload"), # home/upload
-    path("application/home.result", core_views.home2), # result
-    path("application/home.result/<fid>/<uid>", database_views.database_statistic, name="database_homeShowTest"),
+    path("application/home/<uid>", database_views.database_item_upload, name="database_item_upload"), # home/upload
+    path("application/home/result", core_views.home2), # result
+    path("application/home/result/<uid>/<fid>", database_views.database_statistic, name="database_homeShowTest"),
     path("application/files/add/<uid>", database_views.database_item_add,name="database_item_add"),
     path("application/files/<fuid>", database_views.database_item_list_by_id, name="database_item_list_by_id"),
     #path("application/files/s/<fuid>", # specific file)
