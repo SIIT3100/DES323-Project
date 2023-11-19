@@ -56,10 +56,12 @@ def database_login(request):
         Password=request.POST["password"]
         dataset_objs = Users.objects.filter(username=Username)
         if len(dataset_objs) <= 0:
-            return HttpResponse("User Not found" )
+            return render(request, 'WebApp/login.html', {'error_message': 'User not found'})
+        #HttpResponse("User Not found" )
         dataset_objs = Users.objects.filter(username=Username,password = Password)
         if len(dataset_objs) <= 0:
-            return HttpResponse("Wrong Password!" )
+            return render(request, 'WebApp/login.html', {'error_message': 'Wrong password!'})
+        #HttpResponse("Wrong Password!" )
         
         print("Help")
         print(dataset_objs.first().UID)
@@ -71,15 +73,20 @@ def database_create_new_user(request):
         Username=request.POST["username"]
         Password=request.POST["password"]
         Confirm_pass = request.POST["confirm_password"]
+        if not Email or not Username or not Password or not Confirm_pass:
+            return render(request, 'WebApp/reg.html', {'error_message': 'All fields are required'})
+        
         if Confirm_pass != Password:
-            return redirect('register', text = "Password no match")
+            return render(request, 'WebApp/reg.html', {'error_message': 'Password does not match'})
         dataset_objs = Users.objects.filter(email = Email)
         if len(dataset_objs) > 0:
-            return HttpResponse("Already have this Email" )
+            return render(request, 'WebApp/reg.html', {'error_message': 'Email already registered'})
+            #HttpResponse("Already have this Email" )
         
         dataset_objs = Users.objects.filter(username=Username)
         if len(dataset_objs) > 0:
-            return HttpResponse("Already have this username" )
+            return render(request, 'WebApp/reg.html', {'error_message': 'Username already registered'})
+            #HttpResponse("Already have this username" )
         
         New_User  = Users.objects.create(
                                         username=Username,
@@ -106,6 +113,14 @@ def database_item_upload (request, uid):
 
 import csv
 import json
+
+def database_render_aboutus(request, uid):
+    context_data = {
+        "filter_type":str(uid),
+        "uid":str(uid),
+    }
+    return render(request, 'WebApp/aboutL.html' , context= context_data)
+
 def database_item_add(request, uid):
     if request.method=="POST":
         if 'Files' in request.FILES:

@@ -36,7 +36,10 @@
 
     <nav class="navbar navbar-expand-lg navbar-light" style= "background: linear-gradient(#7FFF7C, #ffffff); margin-bottom:50px;">
         <div class="container-fluid">
-            <a href="../application/register"><img src="{% static 'logo.png' %}" aalt="logo" width="120" height="100"></a>
+            <!-- <a href="/application/home/<uid>"><img src="{% static 'logo.png' %}" aalt="logo" width="120" height="100"></a> -->
+                <a href="{% url 'database_item_upload' uid=uid %}">
+                    <img src="{% static 'logo.png' %}" alt="logo" width="120" height="100">
+                </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -44,13 +47,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto me-1 mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link bold-text" href="#">Contact</a>
+                        <a class="nav-link bold-text" href="{% url 'database_render_aboutus' uid=uid %}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link bold-text" href="#">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link bold-text" href="#">Files</a>
+                        <a class="nav-link bold-text" href="{% url 'database_item_list_by_id' fuid=uid %}">Files</a>
                     </li>
                     <!--<button type="submit" onclick="Upload()" class="btn btn-green">Upload</button> -->
                     {% for uid in uid %}
@@ -64,15 +64,11 @@
                             <!-- Submit button (hidden, triggered by file input change) -->
                             <button type="submit" id="submitBtn_{{ uid }}" style="display:none;">Submit</button>
 
-                            <!-- Added text field for displaying the message -->
-                            <div style="margin-top: 10px; font-style: italic; color: #555;">
-                                Pick a file, your visualization will be shown here!
-                            </div>
                         </form>
                     {% endfor %}
 
                     <div class="profile-image">
-                        <a class="pfp" href="../application/register"><img src="{% static 'profile.jpg' %}" alt="pfp" width="60" height="60">  Nenechi</a>
+                        <a class="pfp" href="/application/register"><img src="{% static 'profile.jpg' %}" alt="pfp" width="60" height="60">  Nenechi</a>
                     </div>
                 </ul>
             </div>

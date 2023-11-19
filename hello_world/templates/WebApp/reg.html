@@ -62,8 +62,11 @@ Sign Up
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="Confirm Password" id="confirm_password"name="confirm_password">
             </div>
-            <button type="submit" class="btn btn-primary submit-btn" >Sign Up</button>
+            <button type="submit" class="btn btn-primary submit-btn">Sign Up</button>
         </form>
+        {% if error_message %}
+        <p class="fw-bold centered-heading mt-4" style="color: red;">{{ error_message }}</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

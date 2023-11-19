@@ -32,6 +32,10 @@ def aboutus(request):
     context = {}
     return render(request, "WebApp/about.html", context=context)
 
+def aboutusL(request):
+    context = {}
+    return render(request, "WebApp/aboutL.html", context=context)
+
 def uploadfile(request):
     context = {}
     return render(request, "WebApp/upload.html", context=context)
