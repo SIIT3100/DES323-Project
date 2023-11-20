@@ -284,8 +284,10 @@ def database_item_edit(request, fid):
 
 def update_name(request, fid):
     if request.method == 'POST':
+        #fID = request.POST.get('fID')
+        #name = 'new_fName'+ fid
         new_fName = request.POST.get('new_fName')
-        fID = request.POST.get('fID')
+        
         
         try:
             # Use get() instead of filter() to get a single instance
