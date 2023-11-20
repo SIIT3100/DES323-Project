@@ -41,6 +41,7 @@ View File
         </tr>
     </thead>
     <tbody>
+        {% for uid in uid %}
         {% for row in datasets %}
         <form method="post" enctype="multipart/form-data" action="{% url 'database_update_name' row.fID %}">
             {% csrf_token %}
@@ -48,9 +49,10 @@ View File
                 <input type="hidden" name="fID" value="{{ row.fID }}">
                 <input type="hidden" name="new_fName" id="new_fName_input{{ row.fID }}" value="">
                 <td>
+                    <button type="button" class="btn btn-primary btn-rounded" onclick="redirectToAnotherPath( {{ row.fID }}, {{ uid }});" style="margin:5px;">Sentiment</button>
                     <button type="button" class="btn btn-danger btn-rounded" onclick="deleteFile({{ row.fID  }});" style="margin:5px;">Delete</button>
                     <button type="button" class="btn btn-success btn-rounded" style="background-color: #50a060; margin:5px" id="editButton_{{ row.fID }}" onclick="handleEdit({{ row.fID  }})">Edit</button>
-                    <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #007bff; margin:5px; display:none;" id="confirmButton_{{ row.fID }}" onclick="handleConfirm({{ row.fID }})">Confirm</button>
+                    <button type="submit" class="btn btn-info btn-rounded" style="background-color: #007bff; margin:5px; display:none;" id="confirmButton_{{ row.fID }}" onclick="handleConfirm({{ row.fID }})">Confirm</button>
                 </td>
                 <td id="fName_{{ row.fID }}" class="editable" contenteditable="false">
                     <a href="{% url 'database_item_edit' fid=row.fID %}">{{ row.fName }}</td>
@@ -59,9 +61,18 @@ View File
             </tr>
         </form>
     {% endfor %}
+    {% endfor %}
     </tbody>
 </table>
 </div>
+<script>
+    function redirectToAnotherPath(fID, uid) {
+        console.log('FID:', fID);
+        console.log('UID:', uid);
+        window.location.href = '{% url "database_homeShowTest" uid=0 fid=0 %}'.replace('0', uid).replace('0', fID);
+    }
+</script>
+
 
 <script>
     

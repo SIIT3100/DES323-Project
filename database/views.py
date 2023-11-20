@@ -218,12 +218,14 @@ def database_statistic (request, fid, uid):
         return HttpResponse("File content not found")
     
     json_data = json.loads(file_content)
+    name = item.fName
     
     #if len(dataset_objs) <= 0:
         #return HttpResponse("ID Not found" )
     context_data = {
         "filter_type":str(fid),
         "uid":str(uid),
+        "name":name,
         "datasets":json_data
     }
     return render(request, 'WebApp/homeShowTest.html' , context= context_data)
@@ -312,6 +314,27 @@ def update_name(request, fid):
     return HttpResponse("Invalid request")
         
         
+
+def update_user(request, uid):
+    if request.method == 'POST':
+        new_Username = request.POST.get('new_Username')
+        new_Email = request.POST.get('new_Email')
+        #print(uid)
+        # fID = request.POST.get('fID')
+        
+        try:
+            # Use get() instead of filter() to get a single instance
+            item = User.objects.get(UID=uid)
+        except File.DoesNotExist:
+            return HttpResponse("ID Not found")
+        
+        # Update the attributes and save the model instance
+        item.username = new_Username
+        item.email = new_Email
+        item.save()
+
+
+        return redirect('user_profile', uid=uid)
 
     # Handle other cases or render a response if needed
     return HttpResponse("Invalid request")

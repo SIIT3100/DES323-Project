@@ -45,6 +45,7 @@ urlpatterns = [
     path("application/files/delete/<fid>", database_views.database_item_delete),
     path("application/files/edit/<fid>", database_views.database_item_edit, name="database_item_edit"),
     path("application/profile/<uid>", database_views.user_profile, name="user_profile"),
+    path("application/editusername/<uid>", database_views.update_user, name="database_update_user"),
     #path("application/files/update", database_views.database_update, name="database_update"),
     path("api/delete/<id>", database_views.api_item_delete),
     path("api/process/<id>", database_views.api_item_process),

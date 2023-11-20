@@ -54,7 +54,9 @@ View File
 </head>
 <body>
   <div class="mb-5" style="background-color: #f0f0f0; padding:5px">
-    <h1 class="pie-chart-container mb-4" style="margin-top: 10px; text-align: center;">Comment from Product A</h1>
+    {% if name in name %}
+    <h1 class="pie-chart-container mb-4" style="margin-top: 10px; text-align: center;">Comment from {{ name }}</h1>
+    {% endif %}
     <div id="pie-chart" class="pie-chart-container"></div>
     <script>
       const jsonData = {{ datasets|safe }};
@@ -161,9 +163,16 @@ View File
     .flat()
     .filter(word => !stopWords.includes(word));
 
+  const neutralMessages = jsonData
+    .filter(item => item.sentiment_response.type === 'neutral')
+    .map(item => item.message.toLowerCase().split(/\s+/))
+    .flat()
+    .filter(word => !stopWords.includes(word));
+
   // Generate word clouds
   generateWordCloud('positive-wordcloud', positiveMessages, 'green');
   generateWordCloud('negative-wordcloud', negativeMessages, 'red');
+  generateWordCloud('neutral-wordcloud', neutralMessages, 'yellow');
 
   function generateWordCloud(containerId, words, color) {
     const width = 200;
@@ -274,17 +283,13 @@ View File
 
 
 <div class="mb-5 mt-3" style="display:flex;justify-content: center;align-items: center;">
-    <button  onclick="view()" type="button" class="btn btn-dark btn-rounded" style= "margin-top:5px">View This File</button>
-    <button  onclick="select()" type="button" class="btn btn-dark btn-rounded" style="margin-left:15px; margin-top:5px">Select Other File</button>    
+    <a href="{% url 'database_item_edit' fid=filter_type %}" type="button" class="btn btn-dark btn-rounded" style= "margin-top:5px">
+      View This File
+    </a>
+    <a href="{% url 'database_item_list_by_id' fuid=uid %}" type="button" class="btn btn-dark btn-rounded" style="margin-left:15px; margin-top:5px">
+      Select Other File
+    </a>    
 </div>
-<script>
-    function view(button) {
-        console.log("View button pressed");
-    }
-    function select(button) {
-        console.log("Select button pressed");
-    }
-</script>
 
 </body>
 {% endblock %}

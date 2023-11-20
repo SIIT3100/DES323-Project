@@ -7,21 +7,84 @@ User Profile
 
 {% block content %}
 {% for item in datasets %}
-<div class="user-profile-content">
-    <h1>User Profile</h1>
-    <div>
-        <a href="../application/profile"><img src="{% static 'profile.jpg' %}" alt="pfp" width="160" height="160"></a>
+<form method="post" enctype="multipart/form-data" action="{% url 'database_update_user' uid %}">
+    {% csrf_token %}
+    <div class="user-profile-content">
+        <h1>User Profile</h1>
+        <div>
+            <a href="../application/profile"><img src="{% static 'profile.jpg' %}" alt="pfp" width="160" height="160"></a>
+        </div>
+        <p>Username: 
+        <span id="Username_" class="editable" contenteditable="false">{{ item.username }}</span>
+        </p>
+        <p>Email: 
+        <span id="Email_" class="editable" contenteditable="false">{{ item.email }}</span>
+        </p>
+        <input type="hidden" name="new_Username" id="new_Username_input{{ item.UID }}" value="">
+        <input type="hidden" name="new_Email" id="new_Email_input{{ item.UID }}" value="">
+        <button type="button" class="btn btn-success btn-rounded" style="background-color: #50a060; margin:5px" id="editButton_{{ item.UID }}" onclick="handleEdit( {{ item.UID }})">Edit Username</button>
+        <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #007bff; margin:5px; display:none;" id="confirmButton_{{ item.UID }}" onclick="handleConfirm({{ item.UID }})">Confirm</button>
     </div>
-    <p>Username: {{ item.username }}</p>
-    <p>Email: {{ item.email }}</p>
-
-</div>
+</form>
 {% endfor %}
 
+<script>
+    function handleEdit(fID) {
+        console.log('UID:', fID);
+        var fieldElement = document.getElementById('Username_');
+        var fieldElement2 = document.getElementById('Email_');
+        var editButton = document.getElementById('editButton_'+ fID);
+        var confirmButton = document.getElementById('confirmButton_' + fID);
+
+        if (!fieldElement) {
+            console.error('Field element not found.');
+            return;
+        }
+
+        fieldElement.contentEditable = true;
+        fieldElement.classList.add('editable');
+        fieldElement2.contentEditable = true;
+        fieldElement2.classList.add('editable');
+        editButton.style.display = 'none';
+        confirmButton.style.display = 'inline-block';
+    }
+
+
+    function handleConfirm(fID) {
+        var form = document.querySelector('form');
+        if (!form) {
+            console.error('Form element not found.');
+            return;
+        }
+
+        // Assuming you have separate hidden inputs for Username and Email
+        var new_Username_input = document.getElementById('new_Username_input' + fID);
+        var new_Email_input = document.getElementById('new_Email_input' + fID);
+
+        // Assuming you have separate editable fields for Username and Email
+        var UsernameElement = document.getElementById('Username_' );
+        var EmailElement = document.getElementById('Email_' );
+
+        // Set the 'new_Username' value based on the edited content
+        new_Username_input.value = UsernameElement.innerText.trim();
+        // Set the 'new_Email' value based on the edited content
+        new_Email_input.value = EmailElement.innerText.trim();
+
+        console.log(new_Username_input.value);
+        console.log(new_Email_input.value);
+
+        console.log('Submitting form...');
+        form.submit();
+    }
+</script>
+
 {% endblock %}
+
 
 <style>
     .user-profile-content {
         margin-bottom: 40px;
     }
+
+    
 </style>
