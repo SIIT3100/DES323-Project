@@ -55,6 +55,8 @@ def database_login(request):
         Username=request.POST["username"]
         Password=request.POST["password"]
         dataset_objs = Users.objects.filter(username=Username)
+        if not Username or not Password:
+            return render(request, 'WebApp/login.html', {'error_message': 'Both username and password are required'})
         if len(dataset_objs) <= 0:
             return render(request, 'WebApp/login.html', {'error_message': 'User not found'})
         #HttpResponse("User Not found" )
@@ -75,18 +77,18 @@ def database_create_new_user(request):
         Confirm_pass = request.POST["confirm_password"]
         if not Email or not Username or not Password or not Confirm_pass:
             return render(request, 'WebApp/reg.html', {'error_message': 'All fields are required'})
-        
-        if Confirm_pass != Password:
-            return render(request, 'WebApp/reg.html', {'error_message': 'Password does not match'})
-        dataset_objs = Users.objects.filter(email = Email)
-        if len(dataset_objs) > 0:
-            return render(request, 'WebApp/reg.html', {'error_message': 'Email already registered'})
-            #HttpResponse("Already have this Email" )
-        
+        dataset_objs = Users.objects.filter(email = Email)  
         dataset_objs = Users.objects.filter(username=Username)
         if len(dataset_objs) > 0:
             return render(request, 'WebApp/reg.html', {'error_message': 'Username already registered'})
             #HttpResponse("Already have this username" )
+            
+        if len(dataset_objs) > 0:
+            return render(request, 'WebApp/reg.html', {'error_message': 'Email already registered'})
+            #HttpResponse("Already have this Email" )
+            
+        if Confirm_pass != Password:
+            return render(request, 'WebApp/reg.html', {'error_message': 'Password does not match'})
         
         New_User  = Users.objects.create(
                                         username=Username,
