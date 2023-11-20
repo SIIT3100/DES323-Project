@@ -6,10 +6,18 @@ User Profile
 {% endblock %}
 
 {% block content %}
+<style>
+    nav.navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;  
+    }
+</style>
 {% for item in datasets %}
 <form method="post" enctype="multipart/form-data" action="{% url 'database_update_user' uid %}">
     {% csrf_token %}
-    <div class="user-profile-content">
+    <div class="user-profile-content" style="overflow-x: auto;">
         <h1>User Profile</h1>
         <div>
             <a href="../application/profile"><img src="{% static 'profile.jpg' %}" alt="pfp" width="160" height="160"></a>

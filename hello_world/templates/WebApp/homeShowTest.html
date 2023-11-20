@@ -7,6 +7,41 @@ View File
 
 {% block content %}
 <style>
+
+    nav.navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;  
+    }
+
+  .wordcloud-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Center items horizontally */
+      align-items: center; /* Center items vertically */
+    }
+
+    .wordcloud-item {
+      background-color: #f0f0f0;
+      padding: 8px;
+      border-radius: 10px;
+      margin: 10px;
+      width: calc(33.33% - 20px);
+      text-align: center; /* Center text within the item */
+    }
+
+    .wc {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 767px) {
+      .wordcloud-item {
+        width: calc(100% - 20px);
+        order: 0;
+      }
+    }
     
     table {
             font-family: arial, sans-serif;
@@ -69,13 +104,15 @@ View File
 
       const data = [
         { label: 'Positive', value: positiveCount },
-        { label: 'Negative', value: negativeCount }
+        { label: 'Negative', value: negativeCount },
+        { label: 'Neutral', value: neutralCount }
       ];
 
       function renderPieChart(data, colors) {
-        const width = 400;
-        const height = 400;
-        const radius = Math.min(width, height) / 2;
+        const container = document.getElementById('pie-chart');
+        const width = container.clientWidth /2; // Use clientWidth for the container size
+        const height = container.clientWidth /2; // Set height to match width for a 1:1 aspect ratio
+        const radius = Math.min(width, height) / 2.25;
 
         const svg = d3.select('#pie-chart')
           .append('svg')
@@ -104,25 +141,26 @@ View File
           .attr('fill', (d, i) => color(i));
       }
 
-      const customColors = ['#34eb7a', '#eb4034']; // Green for positive and red for negative
+      const customColors = ['#34eb7a', '#eb4034', '#FFFF00']; // Green for positive and red for negative
       renderPieChart(data, customColors);
     </script>
   </div>
 
-<!-- Add these elements after the existing scripts -->
-<div class="wordcloud-container container" style="display: flex; justify-content: space-around; text-align: center;">
+  <div class="wordcloud-container container">
 
-  <div style="background-color: #f0f0f0; padding: 8px; border-radius: 10px;">
-    <p class="wc mb-2" style="margin-top: 10px; font-weight: bold;">Positive Comments WordCloud</p>
-    <div id="positive-wordcloud"></div>
+    <div class="wordcloud-item" id="neutral-wordcloud">
+      <p class="wc mb-2">Neutral Comments WordCloud</p>
+    </div>
+  
+    <div class="wordcloud-item" id="positive-wordcloud">
+      <p class="wc mb-2">Positive Comments WordCloud</p>
+    </div>
+  
+    <div class="wordcloud-item" id="negative-wordcloud">
+      <p class="wc mb-2">Negative Comments WordCloud</p>
+    </div>
+  
   </div>
-
-  <div style="background-color: #f0f0f0; padding: 8px; border-radius: 10px;">
-    <p class="wc mb-2" style="margin-top: 10px; font-weight: bold">Negative Comments WordCloud</p>
-    <div id="negative-wordcloud"></div>
-  </div>
-
-</div>
   
 
 <script>
@@ -169,45 +207,50 @@ View File
     .flat()
     .filter(word => !stopWords.includes(word));
 
-  // Generate word clouds
   generateWordCloud('positive-wordcloud', positiveMessages, 'green');
   generateWordCloud('negative-wordcloud', negativeMessages, 'red');
-  generateWordCloud('neutral-wordcloud', neutralMessages, 'yellow');
+  generateWordCloud('neutral-wordcloud', neutralMessages, '#ebb134');
 
   function generateWordCloud(containerId, words, color) {
-    const width = 200;
-    const height = 100;
+  const width = 200;
+  const height = 200;
 
-    const svg = d3.select(`#${containerId}`)
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height)
-      .append('g')
-      .attr('transform', `translate(${width / 2},${height / 2})`);
+  const svg = d3.select(`#${containerId}`)
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .append('g')
+    .attr('transform', `translate(${width / 2},${height / 2})`);
 
-    const wordFrequencies = calculateWordFrequencies(words);
+  const wordFrequencies = calculateWordFrequencies(words);
 
-    const layout = d3.layout.cloud()
-      .size([width, height])
-      .words(wordFrequencies.map(word => ({ text: word.word, size: word.frequency * 10 })))
-      .padding(5)
-      .rotate(() => Math.random() < 0.5 ? 0 : 90)
-      .fontSize(d => d.size)
-      .on('end', draw);
+  // Calculate the range of word frequencies
+  const frequencyRange = d3.extent(wordFrequencies, word => word.frequency);
 
-    layout.start();
+  // Use the range of frequencies to dynamically adjust the scale factor
+  const scaleFactor = d3.scaleLinear().domain(frequencyRange).range([1, 5]);
 
-    function draw(words) {
-      svg.selectAll('text')
-        .data(words)
-        .enter().append('text')
-        .style('font-size', d => d.size)
-        .style('fill', color) // Set text color based on sentiment
-        .attr('text-anchor', 'middle') // Center the text
-        .attr('transform', d => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
-        .text(d => d.text);
-    }
+  const layout = d3.layout.cloud()
+    .size([width, height])
+    .words(wordFrequencies.map(word => ({ text: word.word, size: scaleFactor(word.frequency) * 5 })))
+    .padding(5)
+    .rotate(() => Math.random() < 0.5 ? 0 : 90)
+    .fontSize(d => d.size)
+    .on('end', draw);
+
+  layout.start();
+
+  function draw(words) {
+    svg.selectAll('text')
+      .data(words)
+      .enter().append('text')
+      .style('font-size', d => d.size)
+      .style('fill', color) // Set text color based on sentiment
+      .attr('text-anchor', 'middle') // Center the text
+      .attr('transform', d => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
+      .text(d => d.text);
   }
+}
 
   function calculateWordFrequencies(words) {
     const wordCount = {};

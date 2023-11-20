@@ -7,6 +7,17 @@ View File
 
 {% block content %}
 <style>
+    body {
+        position: relative;
+    }
+    
+    header {
+        position: sticky;
+        top: 0;
+        background-color: #f0f0f0;
+        z-index: 1000;
+    }
+
     table {
         width: 70%;
         margin: 0 auto;
@@ -16,6 +27,7 @@ View File
     th, td {
         padding: 10px;
         text-align: center;
+        overflow-x: auto;
     }
 
     .edit-button {
@@ -26,11 +38,26 @@ View File
         border-radius: 5px;
         cursor: pointer;
     }
+
+    @media screen and (max-width: 767px) {
+        table {
+            width: 100%;
+            font-size: 16px;
+            overflow-x: auto;
+        }
+    }
+
+    nav.navbar {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
 </style>
 
 <h2 style="text-align: center;">File Details</h2>
 
-<div class="mb-5">
+<div class="mb-5" style="overflow-x: auto;">
 <table border="1">
     <thead>
         <tr>

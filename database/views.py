@@ -172,7 +172,7 @@ def database_item_add(request, uid):
             combined_data=[]
 
             for sentence_data in json_data:
-                sentence = sentence_data.get("message", "")
+                sentence = sentence_data.get("message", sentence_data.get("Text", ""))
                 querystring = {"text": sentence}
                 response = requests.get(url, headers=headers, params=querystring)
                 responses.append(response.json())

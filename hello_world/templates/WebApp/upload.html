@@ -5,7 +5,15 @@ Main Page
 {% endblock %}
 
 {% block content %}
-    <div style="text-align: center;">
+<style>
+    nav.navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;  
+    }
+</style>
+    <div style="text-align: center; overflow-x: auto;">
         <h1>Upload A File</h1>
         {% for uid in filter_type %}
         <div id="fileform" style="display: inline-block; margin-top: 10px; background-color: #f0f0f0; padding: 10px; border-radius: 8px; border: 2px dashed #ccc;">

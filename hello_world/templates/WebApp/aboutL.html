@@ -5,7 +5,7 @@ About Us
 {% endblock %}
 
 {% block content %}
-<div style="text-align: center; align-content: center;">
+<div style="text-align: center; align-content: center; overflow-x: auto;">
     <div class="container">
         <div class="about-section">
             <h2>About Us</h2>
@@ -23,6 +23,13 @@ About Us
 </div>
 
 <style>
+    nav.navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;  
+    }
+
     .container {
         display: flex;
         justify-content: space-between;

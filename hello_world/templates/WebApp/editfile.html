@@ -6,6 +6,14 @@ Edit File
 
 {% block content %}
     <style>
+
+        nav.navbar {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;  
+        }
+
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
@@ -37,7 +45,7 @@ Edit File
     </head>
 
  
-    <div class="container">
+    <div class="container" style="overflow-x: auto;">
         <!-- your_template.html -->
         <table id="myTable" border="1">
             <thead>
@@ -79,7 +87,7 @@ Edit File
         <div class="mb-5">
             <p>Filter Type: {{ filter_type }}</p>
             <button  onclick="update({{ filter_type }})" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button>
-            <button  onclick="cancle()" type="button" class="btn btn-light btn-rounded" style="margin-left:15px; margin-top:5px">Cancel</button>    
+            <a href="{% url 'database_item_list_by_id' fuid=uid %}" type="button" class="btn btn-light btn-rounded" style="margin-left:15px; margin-top:5px">Cancel</a>    
         </div>
         <!-- Include jQuery library -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
