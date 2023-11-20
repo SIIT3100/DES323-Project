@@ -46,7 +46,7 @@ View File
             {% csrf_token %}
             <tr>
                 <input type="hidden" name="fID" value="{{ row.fID }}">
-                <input type="hidden" name="new_fName" id="new_fName_input" value="">
+                <input type="hidden" name="new_fName" id="new_fName_input{{ row.fID }}" value="">
                 <td>
                     <button type="button" class="btn btn-danger btn-rounded" onclick="deleteFile({{ row.fID  }});" style="margin:5px;">Delete</button>
                     <button type="button" class="btn btn-success btn-rounded" style="background-color: #50a060; margin:5px" id="editButton_{{ row.fID }}" onclick="handleEdit({{ row.fID  }})">Edit</button>
@@ -91,7 +91,8 @@ View File
     var new_fName = fNameElement.innerText.trim();
     console.log('Setting new_fName:', new_fName);
 
-    
+    var new_fName_input = document.getElementById('new_fName_input' + fID);
+
     new_fName_input.value = new_fName;
 
 
