@@ -1,0 +1,27 @@
+{% extends 'WebApp/layout/layout_main.html' %}
+{% load static %}
+
+{% block title %}
+User Profile
+{% endblock %}
+
+{% block content %}
+{% for item in datasets %}
+<div class="user-profile-content">
+    <h1>User Profile</h1>
+    <div>
+        <a href="../application/profile"><img src="{% static 'profile.jpg' %}" alt="pfp" width="160" height="160"></a>
+    </div>
+    <p>Username: {{ item.username }}</p>
+    <p>Email: {{ item.email }}</p>
+
+</div>
+{% endfor %}
+
+{% endblock %}
+
+<style>
+    .user-profile-content {
+        margin-bottom: 40px;
+    }
+</style>

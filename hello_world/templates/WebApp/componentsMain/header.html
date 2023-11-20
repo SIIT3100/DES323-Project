@@ -11,6 +11,15 @@
         color: white;
     }
 
+    .btn-red {
+        margin-right: 20px; 
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: hsl(344, 100%, 50%);
+        font-weight: bold;
+        color: white;
+    }
+
     .bold-text {
         font-weight: bold; 
     }
@@ -63,12 +72,19 @@
 
                             <!-- Submit button (hidden, triggered by file input change) -->
                             <button type="submit" id="submitBtn_{{ uid }}" style="display:none;">Submit</button>
-
                         </form>
                     {% endfor %}
 
                     <div class="profile-image">
-                        <a class="pfp" href="/application/register"><img src="{% static 'profile.jpg' %}" alt="pfp" width="60" height="60">  Nenechi</a>
+                        <a class="pfp" href="{% url 'user_profile' uid=uid %}">
+                            <img src="{% static 'profile.jpg' %}" alt="pfp" width="60" height="60">  
+                            <!-- Nenechi -->
+                            <!-- {{ datasets.0.username }} -->
+                        </a>
+                    </div>
+
+                    <div class="logout-btn">
+                        <a href="/application/login" class="btn btn-red">Logout</a>
                     </div>
                 </ul>
             </div>

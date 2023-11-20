@@ -70,3 +70,7 @@ def save_edited_file(request):
         edited_file = request.FILES.get('edited_file')
 
     return HttpResponse("File saved successfully")
+
+def profile(request):
+    context = {}
+    return render(request, "WebApp/profile.html", context=context)

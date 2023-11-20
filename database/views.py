@@ -280,12 +280,18 @@ def database_item_edit(request, fid):
     }
     return render(request, 'WebApp/editfile.html' , context= context_data)
 
-
+def user_profile(request, uid):
+    item = User.objects.filter(UID = uid)
+    context = {
+        "uid":str(uid),
+        "datasets":item
+    }
+    return render(request, "WebApp/profile.html", context=context) 
 
 def update_name(request, fid):
     if request.method == 'POST':
         new_fName = request.POST.get('new_fName')
-        fID = request.POST.get('fID')
+        # fID = request.POST.get('fID')
         
         try:
             # Use get() instead of filter() to get a single instance
