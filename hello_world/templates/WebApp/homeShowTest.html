@@ -159,7 +159,18 @@ View File
     <div class="wordcloud-item" id="negative-wordcloud">
       <p class="wc mb-2">Negative Comments WordCloud</p>
     </div>
-  
+
+  </div>
+
+  <div class="wordcloud-container">
+    <p class="wordcloud-item" style="font-weight: bold;">Overall Summary:</p>
+      <div class="wordcloud-container">
+      {% if overall_summary %}
+        <p class="wordcloud-item" >{{ overall_summary }}</p>
+      {% else %}
+        <p class="wordcloud-item" style="color: red;">There was an error generating summary</p>
+      {% endif %}
+      </div>
   </div>
   
 

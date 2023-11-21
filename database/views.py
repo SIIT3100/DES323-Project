@@ -7,6 +7,12 @@ import json
 import requests
 import io
 
+from openai import OpenAI
+
+import os
+
+import random
+
 from django.core.files.base import ContentFile
 
 from django.contrib.auth.models import User
@@ -21,6 +27,26 @@ from datetime import datetime
 from django.urls import reverse
 from django.contrib import messages
 from .models import User
+
+
+def generate_summary(sentences):
+    # print(sentences)
+    # from openai import OpenAI
+    client = OpenAI(
+    api_key='',  # this is also the default, it can be omitted
+    )
+    selected_sentences = random.sample(sentences, min(15, len(sentences)))
+    prompt = "In a neutral tone, tell in one short sentence why the reviews are good and bad for the following sentences:\n"
+    prompt += "\n".join(f"{i + 1}. {sentence}" for i, sentence in enumerate(selected_sentences))
+    completion = client.completions.create(
+        model='text-babbage-001',
+        prompt = prompt,
+        max_tokens= 100
+        )
+    print(completion.choices[0].text)
+    #print(dict(completion).get('usage'))
+    #print(completion.model_dump_json(indent=2))
+    return completion.choices[0].text
 
 def list(request):
     if request.method == 'POST':
@@ -188,6 +214,9 @@ def database_item_add(request, uid):
                 }
 
                 combined_data.append(combined_entry)
+                
+            #overall_summary = generate_summary([sentence_data.get("message", sentence_data.get("Text", "")) for sentence_data in json_data])
+            #print("Overall Summary:", overall_summary)
 
             #print(responses)
             print(combined_data)
@@ -222,13 +251,17 @@ def database_statistic (request, fid, uid):
     json_data = json.loads(file_content)
     name = item.fName
     
+    overall_summary = generate_summary([sentence_data.get("message", sentence_data.get("Text", "")) for sentence_data in json_data])
+    print("Overall Summary:", overall_summary)
+    
     #if len(dataset_objs) <= 0:
         #return HttpResponse("ID Not found" )
     context_data = {
         "filter_type":str(fid),
         "uid":str(uid),
         "name":name,
-        "datasets":json_data
+        "datasets":json_data,
+        "overall_summary": overall_summary
     }
     return render(request, 'WebApp/homeShowTest.html' , context= context_data)
             
@@ -280,7 +313,10 @@ def database_item_edit(request, fid):
     context_data = {
         "filter_type":str(fid),
         "uid":str(Uid),
-        "datasets":json_data
+        "datasets":json_data,
+        "fName": item.fName,
+        "fDateTime": item.fDateTime,
+        "fSize": item.file.size/1000,
     }
     return render(request, 'WebApp/editfile.html' , context= context_data)
 
