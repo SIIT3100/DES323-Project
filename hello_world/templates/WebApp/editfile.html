@@ -52,42 +52,45 @@ Edit File
                 <tr>
                     <th>Message</th>
                     <th>Sentiment</th>
-                    <th>Delete</th>
+                    <!-- <th>Delete</th> -->
                 </tr>
             </thead>
             <tbody>
                 {% for data_item in datasets %}
                     <tr>
-                        <td><input type="text" name="message" value="{{ data_item.message }}" /></td>
+                        <td>{{ data_item.message }}</td>
                         <td>{{ data_item.sentiment_response.type }}</td>
-                        <td><button type="button" onclick="removeRow(this)" class="btn btn-danger btn-rounded">Delete</button></td>
+                        <!-- <td><button type="button" onclick="removeRow(this)" class="btn btn-danger btn-rounded">Delete</button></td> -->
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-        <!-- Submit button outside the table -->
+        <!-- Submit button outside the table 
         <button type="button" onclick="submitMessages()" class="btn btn-primary btn-rounded">Submit Messages</button>
-
         <h1></h1>
+        -->
 
+        <!--
         <div>
             <button onclick="addRow()" type="button" class="btn btn-warning btn-rounded">Add Row</button>
         </div>
+        -->
 
         <div>
             <p style="font-weight: bold; margin-top:5px; margin-bottom:5px;">Title:</p>
-            <p contenteditable="true">Comment from XXX restaurant</p>
+            <p>{{ fName }}</p>
             <p style="font-weight: bold;">Size:</p>
-            <p>50 Kb</p>
+            <p>{{ fSize}} KB</p>
             <p style="font-weight: bold;">Date:</p>
-            <p>2023-10-22</p>
+            <p>{{ fDateTime }}</p>
         </div>
 
+        
         <div class="mb-5">
-            <p>Filter Type: {{ filter_type }}</p>
-            <button  onclick="update({{ filter_type }})" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button>
-            <a href="{% url 'database_item_list_by_id' fuid=uid %}" type="button" class="btn btn-light btn-rounded" style="margin-left:15px; margin-top:5px">Cancel</a>    
+            <!--<p>Filter Type: {{ filter_type }}</p>
+             <button  onclick="update({{ filter_type }})" type="button" class="btn btn-success btn-rounded" style= "background-color: #50a060; margin-top:5px">Update</button> -->
+            <a href="{% url 'database_item_list_by_id' fuid=uid %}" type="button" class="btn btn-light btn-rounded" style="margin-left:15px; margin-top:5px">Return</a>    
         </div>
         <!-- Include jQuery library -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

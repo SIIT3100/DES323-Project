@@ -141,7 +141,7 @@ View File
           .attr('fill', (d, i) => color(i));
       }
 
-      const customColors = ['#34eb7a', '#eb4034', '#FFFF00']; // Green for positive and red for negative
+      const customColors = ['#34eb7a', '#eb4034', '#ebb134']; // Green for positive and red for negative
       renderPieChart(data, customColors);
     </script>
   </div>
@@ -159,13 +159,24 @@ View File
     <div class="wordcloud-item" id="negative-wordcloud">
       <p class="wc mb-2">Negative Comments WordCloud</p>
     </div>
-  
+
+  </div>
+
+  <div class="wordcloud-container">
+    <p style="font-weight: bold;">Overall Summary:</p>
+      <div class="wordcloud-container">
+      {% if overall_summary %}
+        <p class="wordcloud-item" >{{ overall_summary }}</p>
+      {% else %}
+        <p class="wordcloud-item" style="color: red;">There was an error generating summary</p>
+      {% endif %}
+      </div>
   </div>
   
 
 <script>
   // Predefined list of stop words
-  const stopWords = [
+    const stopWords = [
     'a', 'about', 'above', 'after', 'again', 'against', 'all', 'am', 'an', 'and',
     'any', 'are', 'aren\'t', 'as', 'at', 'be', 'because', 'been', 'before', 'being',
     'below', 'between', 'both', 'but', 'by', 'can\'t', 'cannot', 'could', 'couldn\'t',
@@ -185,7 +196,7 @@ View File
     'weren\'t', 'what', 'what\'s', 'when', 'when\'s', 'where', 'where\'s', 'which',
     'while', 'who', 'who\'s', 'whom', 'why', 'why\'s', 'with', 'won\'t', 'would',
     'wouldn\'t', 'you', 'you\'d', 'you\'ll', 'you\'re', 'you\'ve', 'your', 'yours',
-    'yourself', 'yourselves'
+    'yourself', 'yourselves', '/><br'
   ];
 
   // Extract positive and negative messages
@@ -207,9 +218,17 @@ View File
     .flat()
     .filter(word => !stopWords.includes(word));
 
-  generateWordCloud('positive-wordcloud', positiveMessages, 'green');
-  generateWordCloud('negative-wordcloud', negativeMessages, 'red');
-  generateWordCloud('neutral-wordcloud', neutralMessages, '#ebb134');
+  // Find common words among positive, negative, and neutral messages
+  const commonWords = positiveMessages.filter(word => negativeMessages.includes(word) && neutralMessages.includes(word));
+
+  // Remove common words from individual word lists
+  const filteredPositiveMessages = positiveMessages.filter(word => !commonWords.includes(word));
+  const filteredNegativeMessages = negativeMessages.filter(word => !commonWords.includes(word));
+  const filteredNeutralMessages = neutralMessages.filter(word => !commonWords.includes(word));
+
+  generateWordCloud('positive-wordcloud', filteredPositiveMessages, 'green');
+  generateWordCloud('negative-wordcloud', filteredNegativeMessages, 'red');
+  generateWordCloud('neutral-wordcloud', filteredNeutralMessages, '#ebb134');
 
   function generateWordCloud(containerId, words, color) {
   const width = 200;
@@ -232,9 +251,10 @@ View File
 
   const layout = d3.layout.cloud()
     .size([width, height])
-    .words(wordFrequencies.map(word => ({ text: word.word, size: scaleFactor(word.frequency) * 5 })))
+    .words(wordFrequencies.map(word => ({ text: word.word, size: scaleFactor(word.frequency) * 10 })))
     .padding(5)
-    .rotate(() => Math.random() < 0.5 ? 0 : 90)
+    // .rotate(() => Math.random() < 0.5 ? 0 : 90)
+    .rotate(() => Math.random() < 0.5 ? 0 : 0)
     .fontSize(d => d.size)
     .on('end', draw);
 

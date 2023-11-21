@@ -13,28 +13,49 @@ User Profile
     top: 0;
     z-index: 1000;  
     }
+
+    /* Styles for screens with a maximum width of 767px (e.g., phones) */
+    @media screen and (max-width: 767px) {
+        p {
+        text-align: left;
+        margin: 10px;
+        }
+
+        .editable {
+        display: inline-block; /* Change from block to inline-block */
+        margin-right: 10px; /* Add some spacing between horizontally stacked elements */
+        margin-bottom: 10px; /* Add some spacing between stacked elements */
+        }
+    }
 </style>
-{% for item in datasets %}
-<form method="post" enctype="multipart/form-data" action="{% url 'database_update_user' uid %}">
-    {% csrf_token %}
-    <div class="user-profile-content" style="overflow-x: auto;">
-        <h1>User Profile</h1>
-        <div>
-            <a href="../application/profile"><img src="{% static 'profile.jpg' %}" alt="pfp" width="160" height="160"></a>
+<div style="margin:15px">
+    {% for item in datasets %}
+    <form method="post" enctype="multipart/form-data" action="{% url 'database_update_user' uid %}">
+        {% csrf_token %}
+        <div class="user-profile-content" style="overflow-x: auto;">
+            <h1>User Profile</h1>
+            <div style="margin:10px">
+                <a href="../application/profile"><img src="{% static 'profile.jpg' %}" alt="pfp" width="160" height="160"></a>
+            
+
+            <p style="font-weight: bold;">Username: 
+            <span id="Username_" class="editable" contenteditable="false" style="font-weight: normal;">{{ item.username }}</span>
+            </p>
+
+            <p style="font-weight: bold;">Email: 
+            <span id="Email_" class="editable" contenteditable="false" style="font-weight: normal;">{{ item.email }}</span>
+            </p>
+
+            <input type="hidden" name="new_Username" id="new_Username_input{{ item.UID }}" value="">
+            <input type="hidden" name="new_Email" id="new_Email_input{{ item.UID }}" value="">
+            <button type="button" class="btn btn-success btn-rounded" style="background-color: #50a060; margin:5px" id="editButton_{{ item.UID }}" onclick="handleEdit( {{ item.UID }})">Edit</button>
+            <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #007bff; margin:5px; display:none;" id="confirmButton_{{ item.UID }}" onclick="handleConfirm({{ item.UID }})">Confirm</button>
+            
+            </div>
         </div>
-        <p>Username: 
-        <span id="Username_" class="editable" contenteditable="false">{{ item.username }}</span>
-        </p>
-        <p>Email: 
-        <span id="Email_" class="editable" contenteditable="false">{{ item.email }}</span>
-        </p>
-        <input type="hidden" name="new_Username" id="new_Username_input{{ item.UID }}" value="">
-        <input type="hidden" name="new_Email" id="new_Email_input{{ item.UID }}" value="">
-        <button type="button" class="btn btn-success btn-rounded" style="background-color: #50a060; margin:5px" id="editButton_{{ item.UID }}" onclick="handleEdit( {{ item.UID }})">Edit Username</button>
-        <button type="submit" class="btn btn-primary btn-rounded" style="background-color: #007bff; margin:5px; display:none;" id="confirmButton_{{ item.UID }}" onclick="handleConfirm({{ item.UID }})">Confirm</button>
-    </div>
-</form>
-{% endfor %}
+    </form>
+    {% endfor %}
+</div>
 
 <script>
     function handleEdit(fID) {
