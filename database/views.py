@@ -33,7 +33,7 @@ def generate_summary(sentences):
     # from openai import OpenAI
     try:
         client = OpenAI(
-        api_key='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',  # this is also the default, it can be omitted
+        api_key='',  # Change this API key
         )
         selected_sentences = random.sample(sentences, min(15, len(sentences)))
         prompt = "From the following reviews, summarize in 50 words in a neutral tone abour the positive and negative of the following reviews, and how the business can be improved from the reviews:\n"
