@@ -164,14 +164,14 @@ View File
 
   <div class="wordcloud-container">
     <p style="font-weight: bold;">Overall Summary:</p>
-      <div class="wordcloud-container">
-      {% if overall_summary %}
-        <p class="wordcloud-item" >{{ overall_summary }}</p>
-      {% else %}
+    {% if overall_summary %}
+        <p class="wordcloud-item">{{ overall_summary }}</p>
+    {% else %}
         <p class="wordcloud-item" style="color: red;">There was an error generating summary</p>
-      {% endif %}
-      </div>
-  </div>
+    {% endif %}
+</div>
+
+
   
 
 <script>

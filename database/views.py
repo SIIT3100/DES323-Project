@@ -28,26 +28,29 @@ from django.urls import reverse
 from django.contrib import messages
 from .models import User
 
-
 def generate_summary(sentences):
     # print(sentences)
     # from openai import OpenAI
-    client = OpenAI(
-    api_key='',  # this is also the default, it can be omitted
-    )
-    selected_sentences = random.sample(sentences, min(15, len(sentences)))
-    prompt = "In a neutral tone, tell in one short sentence why the reviews are good and bad for the following sentences:\n"
-    prompt += "\n".join(f"{i + 1}. {sentence}" for i, sentence in enumerate(selected_sentences))
-    completion = client.completions.create(
-        model='text-babbage-001',
-        prompt = prompt,
-        max_tokens= 100
+    try:
+        client = OpenAI(
+        api_key='',  # this is also the default, it can be omitted
         )
-    print(completion.choices[0].text)
-    #print(dict(completion).get('usage'))
-    #print(completion.model_dump_json(indent=2))
-    return completion.choices[0].text
-
+        selected_sentences = random.sample(sentences, min(15, len(sentences)))
+        prompt = "From the following reviews, summarize in 50 words in a neutral tone abour the positive and negative of the following reviews, and how the business can be improved from the reviews:\n"
+        prompt += "\n".join(f"{i + 1}. {sentence}" for i, sentence in enumerate(selected_sentences))
+        completion = client.completions.create(
+            model='text-babbage-001',
+            prompt = prompt,
+            max_tokens= 100
+            )
+        print(completion.choices[0].text)
+        #print(dict(completion).get('usage'))
+        #print(completion.model_dump_json(indent=2))
+        return completion.choices[0].text
+    
+    except:
+        return "Overall summary is not available now, please try again later"
+        
 def list(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -108,10 +111,6 @@ def database_create_new_user(request):
         if len(dataset_objs) > 0:
             return render(request, 'WebApp/reg.html', {'error_message': 'Username already registered'})
             #HttpResponse("Already have this username" )
-            
-        if len(dataset_objs) > 0:
-            return render(request, 'WebApp/reg.html', {'error_message': 'Email already registered'})
-            #HttpResponse("Already have this Email" )
             
         if Confirm_pass != Password:
             return render(request, 'WebApp/reg.html', {'error_message': 'Password does not match'})
