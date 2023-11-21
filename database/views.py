@@ -33,22 +33,25 @@ def generate_summary(sentences):
     # from openai import OpenAI
     try:
         client = OpenAI(
-        api_key='',  # Change this API key
+        api_key='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',  # Change this API key
         )
         selected_sentences = random.sample(sentences, min(15, len(sentences)))
-        prompt = "From the following reviews, summarize in 50 words in a neutral tone abour the positive and negative of the following reviews, and how the business can be improved from the reviews:\n"
+        prompt = "From the following reviews, summarize in 20 words with a neutral tone with no harsh comment about the positive and negative of the following reviews, and how the business can be improved from the reviews:\n"
         prompt += "\n".join(f"{i + 1}. {sentence}" for i, sentence in enumerate(selected_sentences))
         completion = client.completions.create(
-            model='text-babbage-001',
+            model='text-davinci-003',
             prompt = prompt,
-            max_tokens= 100
+            max_tokens= 100,
+            temperature=0.3,
+            # top_p=1
             )
         print(completion.choices[0].text)
         #print(dict(completion).get('usage'))
         #print(completion.model_dump_json(indent=2))
         return completion.choices[0].text
     
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         return "Overall summary is not available now, please try again later"
         
 def list(request):
