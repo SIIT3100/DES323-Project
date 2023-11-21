@@ -20,7 +20,7 @@ Main Page
             <form method="post" enctype="multipart/form-data" action="{% url 'database_item_add' uid %}">
                 {% csrf_token %}
                 <label for="audio"><strong>Upload File: </strong></label>
-                <input type="file" name="Files" accept=".csv, text/csv"><br><br>
+                <input type="file" name="Files"><br><br>
                 <button type="submit">Submit</button>
 
                 <!-- Added text field for displaying the message -->

@@ -33,7 +33,7 @@ def generate_summary(sentences):
     # from openai import OpenAI
     try:
         client = OpenAI(
-        api_key='',  # this is also the default, it can be omitted
+        api_key='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',  # this is also the default, it can be omitted
         )
         selected_sentences = random.sample(sentences, min(15, len(sentences)))
         prompt = "From the following reviews, summarize in 50 words in a neutral tone abour the positive and negative of the following reviews, and how the business can be improved from the reviews:\n"
@@ -148,30 +148,36 @@ def database_render_aboutus(request, uid):
     }
     return render(request, 'WebApp/aboutL.html' , context= context_data)
 
+def is_csv(file):
+    return  file.endswith('.csv')
+
 def database_item_add(request, uid):
     if request.method=="POST":
         if 'Files' in request.FILES:
             csv_file = request.FILES['Files']
+            if is_csv(csv_file.name):
 
-            # Read CSV data
-            csv_data = csv.reader(csv_file.read().decode('utf-8').splitlines())
+                # Read CSV data
+                csv_data = csv.reader(csv_file.read().decode('utf-8').splitlines())
 
-            # Assuming the first row of the CSV file contains headers
-            headers = next(csv_data)
+                # Assuming the first row of the CSV file contains headers
+                headers = next(csv_data)
 
-            # Convert CSV data to a list of dictionaries
-            csv_list = [dict(zip(headers, row)) for row in csv_data]
+                # Convert CSV data to a list of dictionaries
+                csv_list = [dict(zip(headers, row)) for row in csv_data]
 
-            # Remove BOM from keys
-            csv_list = [{key.strip("\ufeff"): value for key, value in item.items()} for item in csv_list]
+                # Remove BOM from keys
+                csv_list = [{key.strip("\ufeff"): value for key, value in item.items()} for item in csv_list]
 
-            # Convert the list of dictionaries to a JSON string
-            json_data = json.dumps(csv_list)
+                # Convert the list of dictionaries to a JSON string
+                json_data = json.dumps(csv_list)
 
-            # Create a ContentFile from the JSON data
-            content_file = ContentFile(json_data.encode('utf-8'))
+                # Create a ContentFile from the JSON data
+                content_file = ContentFile(json_data.encode('utf-8'))
 
-            print(json_data)
+                print(json_data)
+            else:
+                content_file = csv_file
 
             Uid, created = Users.objects.get_or_create(UID=uid)
             item = File.objects.create(
