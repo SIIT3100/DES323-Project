@@ -47,7 +47,7 @@
         <div class="container-fluid">
             <!-- <a href="/application/home/<uid>"><img src="{% static 'logo.png' %}" aalt="logo" width="120" height="100"></a> -->
                 <a href="{% url 'database_item_upload' uid=uid %}">
-                    <img src="{% static 'logo.png' %}" alt="logo" width="120" height="100">
+                    <img src="{% static 'logo2.png' %}" alt="logo" width="100" height="100">
                 </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -77,7 +77,7 @@
 
                     <div class="profile-image">
                         <a class="pfp" href="{% url 'user_profile' uid=uid %}">
-                            <img src="{% static 'profile.jpg' %}" alt="pfp" width="60" height="60">  
+                            <img src="{% static 'profile.png' %}" alt="pfp" width="60" height="60">  
                             <!-- Nenechi -->
                             <!-- {{ datasets.0.username }} -->
                         </a>
