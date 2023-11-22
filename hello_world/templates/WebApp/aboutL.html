@@ -6,6 +6,24 @@ About Us
 {% load static %}
 
 <style>
+    nav.navbar {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;  
+    }
+
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .centered-heading {
+        text-align: center;
+    }
+
     .tcontainer {
             display: flex;
             flex-wrap: wrap;
@@ -28,28 +46,11 @@ About Us
             order: 0;
         }
     }
-
-    nav.navbar {
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;  
-    }
-
-    .container {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px;
-    }
-
-    .about-section, .contact-section {
-        width: 48%; /* Adjust the width as needed */
-        align-content: center;
-    }
 </style>
 
 {% block content %}
-<div style="text-align: center; align-content: center; overflow-x: auto;">
+<body>
+<div class="center-content" style="text-align: center; align-content: center;">
     <div class="tcontainer">
         <div class="info-section" id="logo">
             <img src="{% static 'logo1.png' %}" width="300" height="300">
@@ -69,5 +70,6 @@ About Us
         </div>
     </div>
 </div>
+</body>
 
 {% endblock %}

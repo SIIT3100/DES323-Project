@@ -7,6 +7,7 @@ About Us
 {% endblock %}
 {% load static %}
 
+<body>
 <style>
     .tcontainer {
             display: flex;
@@ -32,21 +33,21 @@ About Us
     }
 
     nav.navbar {
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;  
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;  
     }
 
-    .container {
+    .center-content {
         display: flex;
-        justify-content: space-between;
-        margin: 20px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
-    .about-section, .contact-section {
-        width: 48%; /* Adjust the width as needed */
-        align-content: center;
+    .centered-heading {
+        text-align: center;
     }
 </style>
 
@@ -71,5 +72,6 @@ About Us
         </div>
     </div>
 </div>
+</body>
 
 {% endblock %}

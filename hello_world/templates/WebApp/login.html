@@ -8,10 +8,10 @@ Login
 <style>
 
     nav.navbar {
-    width: 100%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;  
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;  
     }
 
     .center-content {
@@ -45,7 +45,7 @@ Login
         text-align: center;
     }
 </style>
-
+<body>
 <div class="center-content">
     <div class="form-container">
         <form action="{% url 'database_login' %}" method="post">
@@ -86,4 +86,5 @@ Login
             window.location.href = link;
             }
 </script>
+</body>
 {% endblock %}
